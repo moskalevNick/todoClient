@@ -1,0 +1,23 @@
+.meter {
+  margin: auto;
+  width: 80vw;
+  height: 10px;
+}
+
+.meter-container{
+  text-align: center;
+  margin: 20px;
+
+}
+
+.redMeter{
+--progress-background: #eb445a;
+}
+
+.yellowmeter{
+  --progress-background: #ffca22;
+}
+
+.greenMeter{
+  --progress-background: #42d77d;
+}

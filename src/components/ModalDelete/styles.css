@@ -1,0 +1,17 @@
+.buttonsDelete {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 40px;
+}
+  
+.titleModal{
+  color: var(--base-color-text);
+  text-align: center;
+  padding-top: 95px;
+  padding-bottom: 50px;  
+}
+ 
+.buttonsDelete > .ion-color-danger,
+.buttonsDelete > .ion-color-success{
+  --ion-color-contrast: var(--base-color-text) !important;
+} 

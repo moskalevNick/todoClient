@@ -1,0 +1,36 @@
+@import "../../index.css";
+ 
+.amount {  
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  margin: auto;
+}
+
+.title {
+  color: var(--base-color-text);
+  font-family:'Franklin Gothic Medium'
+}
+
+.plus {
+  margin: 25px 20px 10px;
+  height: 28px;
+  width: 28px;
+  font-size: 1.5em;
+  padding: 3px;
+}
+
+
+
+.stat{
+  text-align: center;
+}
+
+.content > .ion-color-success,
+.stat > .ion-color-danger{
+  --ion-color-contrast: var(--base-color-text) !important;
+} 

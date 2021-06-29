@@ -1,0 +1,61 @@
+.close-button {
+  border-radius: 50%;
+  margin-left: 345px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+} 
+.openedModal > .ion-color-danger{
+  --ion-color-contrast: var(--base-color-text) !important;
+}   
+
+.openedModal > .ion-color-success{
+  --ion-color-contrast: var(--base-color-text) !important;
+} 
+
+.item-has-focus{
+  --highlight-color-focused: #c93434 ;
+}
+
+.buttonAddFullModal,
+.buttonAddEmptyModal {
+  margin-left: 130px;
+  margin-right: 130px;
+  height: 40px;
+  width: 140px;
+  margin-top: 80px;
+}
+
+.inputWindow {
+  color: var(--base-color-text);
+}
+
+.iconX {
+  color: var(--base-color-text);
+}
+
+.openedModal{
+  background-color: var(--base-color-list);
+  width: var(--width);
+  height: var(--height);
+  border-radius: 2px;
+}
+
+.modal-wrapper {
+ margin-bottom: 260px;
+}
+
+.exampleLink {
+  text-align: right;
+  color: var(--base-color-text);
+}
+
+.containerLink{
+  text-align: right;
+}
+
+.invalidCity{
+  color: #e20000;
+  text-align: left;
+  width: 220px;
+  position: absolute;
+}

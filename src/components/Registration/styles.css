@@ -1,0 +1,15 @@
+@import "../../index.css";
+
+.registrContainer {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 200px;
+    min-height:  calc(100vh - 225px);
+    --ion-background-color: var(--base-color-header);
+    --ion-item-color: var(--base-color-text);
+}
+
+.noAcc {
+    width: 500px;
+    text-align: center;
+}

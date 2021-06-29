@@ -1,0 +1,45 @@
+body[color-theme="dark"] {
+  --base-color-header: #3a3535;
+  --base-color-list: #2b1e50;
+  --base-color-text: #dddddd;
+  --base-color-modal: #2e203b;
+  --base-color-nav:  #482369;
+  --base-color-active:  #000000;
+}
+
+body[color-theme="light"] {
+  --base-color-header: #ffffff;
+  --base-color-list: #85b7f8;
+  --base-color-text: #000000;
+  --base-color-modal: #94a7db;
+  --base-color-nav:  #7796fd;
+  --base-color-active:  #ffffff;
+}
+
+body {
+  overflow-x:hidden;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--base-color-header);
+}
+
+.blocked-modal {
+  display: none;
+}
+
+.autor{
+  position:relative;
+  text-align: right;
+}
+
+.autorLink {
+  color: var(--base-color-text);
+}

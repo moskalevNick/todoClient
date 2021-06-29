@@ -1,0 +1,10 @@
+.list {
+    height: calc(100vh - 280px);
+    overflow-y: auto;
+    width: auto;
+  }
+  
+  .noTodos {
+    color: var(--base-color-text);
+    text-align: center;
+  }

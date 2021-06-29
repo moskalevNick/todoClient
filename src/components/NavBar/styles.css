@@ -1,0 +1,63 @@
+@import "../../index.css";
+
+.navBar {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--base-color-nav);
+  height: 74px;
+}
+
+.links{
+  margin-top: 25px;
+  margin-left: 30px;
+}
+
+.navBar_item {
+  justify-self: end;
+  margin: 10px;
+  color: var(--base-color-text);
+  text-decoration: none;
+} 
+
+.underline{
+  color: var(--base-color-active);
+  text-decoration: underline;
+}
+
+.userName{
+  text-align: center;
+  margin: auto;
+  color: var(--base-color-text);
+}
+
+.iconMail{
+  margin: auto;
+  padding-left: 2px;
+}
+
+.containerButtonChangeTheme{
+  position: absolute;
+  right: 0;
+}
+
+.buttonAuth{
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  height: 60px;
+  width: 60px;
+}
+
+.buttonChangeTheme {
+  --ion-color-primary: var(--base-color-nav);
+  align-self: center;
+  height: 60px;
+  width: 60px;
+}
+
+.navBar > .containerButtonChangeTheme > .button-solid{  
+  --box-shadow: 0;
+  --background-hover: 0;
+}
+
