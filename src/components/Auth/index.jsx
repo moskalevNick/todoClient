@@ -37,7 +37,7 @@ const Auth = () => {
           className="ion-margin-top" 
           type="submit" 
           expand="block" 
-          onClick={() => dispatch(login(name, password)) }
+          onClick={ () => dispatch(login(name, password)) }
         >Login
         </IonButton>
         <div className="noAcc">
