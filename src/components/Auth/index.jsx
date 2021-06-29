@@ -23,31 +23,35 @@ const Auth = () => {
           onIonChange={e => setName(e.target.value) }
           value={name}
           type="text"/>
-      </IonItem>
-      <IonItem>
-        <IonLabel 
-          position="floating"
-        >Password</IonLabel>
-        <IonInput
-          type="password"
-          onIonChange={e => setPassword(e.target.value)}
-          value={password}/>
-      </IonItem>
-      <IonButton 
-        className="ion-margin-top" 
-        type="submit" 
-        expand="block" 
-        onClick={() => dispatch(login(name, password)) }
-      >Login
-      </IonButton>
-      <div className="noAcc">
-        <IonRouterLink color="secondary" href='/registration'>I don't have an account</IonRouterLink>
-      </div>
-      <IonToast
-        isOpen={showToast}
-        message={messageException}
-        duration={3000}
-      />
+        </IonItem>
+        <IonItem>
+          <IonLabel 
+            position="floating"
+          >Password</IonLabel>
+          <IonInput
+            type="password"
+            onIonChange={e => setPassword(e.target.value)}
+            value={password}/>
+        </IonItem>
+        <IonButton 
+          className="ion-margin-top" 
+          type="submit" 
+          expand="block" 
+          onClick={() => dispatch(login(name, password)) }
+        >Login
+        </IonButton>
+        <div className="noAcc">
+          <IonRouterLink
+            color="secondary"
+            href='/registration'
+          >I don't have an account
+          </IonRouterLink>
+        </div>
+        <IonToast
+          isOpen={showToast}
+          message={messageException}
+          duration={3000}
+        />
     </div>    
   )}
 
