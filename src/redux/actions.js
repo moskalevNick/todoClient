@@ -33,6 +33,13 @@ export const setUser = (value) => ({
   payload: value
 })
 
+export const setCity = (value, name) => {
+  return async dispatch => {
+    const user = await AuthService.setCity(value, name);
+    dispatch(setUser(user.data))
+  }
+}
+
 export const setTodos = () => {
   return async dispatch => {
     const data = await AuthService.getTodos();
@@ -84,6 +91,7 @@ export const fetchData = (city) => async dispatch => {
   try {
     const responce = await fetch(weatherURL)
     const data = await responce.json()
+    dispatch(setCity(city))
     if ( data.cod === '404' ) {
       console.log('error 404');
     }
@@ -92,7 +100,7 @@ export const fetchData = (city) => async dispatch => {
       payload : data
     })
   }catch(e){
-    console.log('error');
+    console.log(e);
   }  
 }
 
@@ -103,6 +111,7 @@ export const login = (name, password) => async dispatch => {
     localStorage.setItem('token', response.data.accessToken);
     dispatch(setAuth(true))
     dispatch(setUser(response.data.user))
+    dispatch(setCity(response.data.user.city))
   } catch (e) {
     dispatch(setTextException(e.response?.data?.message))
     dispatch(setShowToast(true))
@@ -117,6 +126,7 @@ export const registration = (email, password, name) => async dispatch => {
     localStorage.setItem('token', response.data.accessToken);
     dispatch(setAuth(true))
     dispatch(setUser(response.data.user))
+    dispatch(setCity(response.data.user.city))
   } catch (e) {
     dispatch(setTextException(e.response.data.errors[0].value +
       ' is ' + e.response.data.errors[0].msg + ' of ' + e.response.data.errors[0].param))

@@ -5,16 +5,15 @@ import {IonButton} from "@ionic/react"
 import Card from "./Сard/index"
 import "./styles.css"
 import Modal from "./Modal/index"
-import { fetchData } from '../../redux/actions'
+import { fetchData, setCity } from '../../redux/actions'
 
 const Weather = () => {
   const dispatch = useDispatch()
-  const { weather } = useSelector(state => state)
+  const { weather, user } = useSelector(state => state)
 
   const [isModalChangeCityOpen, setModalChangeCityOpen] = useState(false)
   const [isCityValid, setCityValid] = useState(true)
   const [inputValue, setInputValue] = useState("")
-  const [city, setCity] = useState("minsk")
   const [weatherByDays, setWeatherByDays] = useState ({
     today: [],
     tomorrow: [],
@@ -22,14 +21,14 @@ const Weather = () => {
   })
 
   const changeCity = () => {
-    setCity(inputValue)
+    dispatch(setCity(inputValue, user.name))  
     setInputValue("")
   }
-  
-  useEffect(() => {
-    dispatch(fetchData(city))   
-  }, [dispatch, city])
 
+  useEffect(() => {
+    dispatch(fetchData(user.city))   
+  }, [dispatch, user.city])
+ 
   useEffect(() => {   
     setDates( weather ) 
     if ( weather.cod === '200' ) {
@@ -67,18 +66,16 @@ const Weather = () => {
       ( ( nowDate.getDate() + 2 ) < 10) ? `0${ nowDate.getDate() + 2 }` : nowDate.getDate() + 2
     }`
 
-    if((new Date(2021, nowDate.getMonth() + 1, 0).getDate() === nowDate.getDate()+1)){
-      afterTomorrowDate = `${
-        nowDate.getFullYear()
-      }-${
-        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
-      }-${
-          `01` 
-      }`
-    }
-
-    if((new Date(2021, nowDate.getMonth() + 1, 0).getDate() === nowDate.getDate()+2)){
-      tomorrowDate = `${
+    if(new Date(2021, nowDate.getMonth() + 1, 0).getDate() === 30){ // month 30days
+      if(nowDate.getDate() === 29){
+        afterTomorrowDate = `${
+          nowDate.getFullYear()
+        }-${
+          ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+        }-${
+            `01` 
+        }`
+      }else if(nowDate.getDate() === 30){tomorrowDate = `${
         nowDate.getFullYear()
       }-${
         ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
@@ -91,7 +88,57 @@ const Weather = () => {
         ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
       }-${
           `02` 
+      }`}
+    }
+
+    if(new Date(2021, nowDate.getMonth() + 1, 0).getDate() === 29){ //february 29days
+      if(nowDate.getDate() === 28){
+        afterTomorrowDate = `${
+          nowDate.getFullYear()
+        }-${
+          ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+        }-${
+            `01` 
+        }`
+      }else if(nowDate.getDate() === 29){tomorrowDate = `${
+        nowDate.getFullYear()
+      }-${
+        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+      }-${
+          `01` 
       }`
+      afterTomorrowDate = `${
+        nowDate.getFullYear()
+      }-${
+        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+      }-${
+          `02` 
+      }`}
+    }
+
+    if(new Date(2021, nowDate.getMonth() + 1, 0).getDate() === 28){  //february 28days
+      if(nowDate.getDate() === 27){
+        afterTomorrowDate = `${
+          nowDate.getFullYear()
+        }-${
+          ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+        }-${
+            `01` 
+        }`
+      }else if(nowDate.getDate() === 28){tomorrowDate = `${
+        nowDate.getFullYear()
+      }-${
+        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+      }-${
+          `01` 
+      }`
+      afterTomorrowDate = `${
+        nowDate.getFullYear()
+      }-${
+        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+      }-${
+          `02` 
+      }`}
     }
 
     const today = []
@@ -131,7 +178,7 @@ const Weather = () => {
   return ( 
     <div>    
       <div className={"header"}>
-        <h1>weather for 3 days in {city} city</h1>
+        <h1>weather for 3 days in {user.city} city</h1>
         <IonButton 
           onClick={trigerModalChangeCity} 
           color="primary" 

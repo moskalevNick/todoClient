@@ -17,5 +17,9 @@ export default class AuthService {
         return $api.get('/api/todos')
     }
 
+    static async setCity(city, name) { 
+        return $api.post(`/api/city/${city}`, {name})
+    }
+
 }
 

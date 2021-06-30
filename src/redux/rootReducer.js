@@ -12,6 +12,7 @@ const initialState = {
 }
 
 export default function rootReducer(state = initialState, action){
+
     if (action.type === CHANGE_THEME) {
         return { ...state, themeIsDay : action.payload }
     } 
@@ -45,4 +46,5 @@ export default function rootReducer(state = initialState, action){
     }    
 
     return state
+
 }

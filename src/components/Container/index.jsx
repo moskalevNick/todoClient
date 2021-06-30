@@ -21,7 +21,7 @@ const Container = ({type="main"}) => {
   const { todos } = useSelector(state => state)
 
   useEffect(() => {
-    if(todos){
+    if(todos.data){
       const checked = todos.data.filter((todo) => todo.checked === true)
       setCheckedTodo((checked.length / todos.data.length) * 100)
       setAmount(todos.data.length)
@@ -33,7 +33,7 @@ const Container = ({type="main"}) => {
   }, [dispatch])
 
   const currentTodos = useMemo(() => {
-    if (!todos){
+    if (!todos.data){
       return null
     }
     if (type === "important") {
