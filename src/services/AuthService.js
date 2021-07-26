@@ -18,7 +18,6 @@ export default class AuthService {
     }
 
     static async setCity(city, name) { 
-        console.log(city);
         return $api.post(`/api/city/${city}`, {name})
     }
 
