@@ -149,7 +149,7 @@ export const logout = () => async dispatch => {
 export const checkAuth = () => async dispatch => {
   dispatch(setLoading(true))
   try {
-    const response = await axios.get(`${ process.env.REACT_APP_API_URL}/api/refresh`, {withCredentials: true})
+    const response = await axios.get(`https://amazing-todo-server.herokuapp.com/api/refresh`, {withCredentials: true})
     localStorage.setItem('token', response.data.accessToken);
     dispatch(setAuth(true))
     dispatch(setUser(response.data.user))
