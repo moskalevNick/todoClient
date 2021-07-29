@@ -1,7 +1,6 @@
 import { SET_TODOS, CHANGE_THEME, SET_WEATHER, SET_LOADING, SET_AUTH, SET_USER, SHOW_TOAST, TEXT_EXCEPTION } from "./types"
 import AuthService from "../services/AuthService";
 import TodoService from '../services/TodoService';
-import axios from 'axios'
 
 export const changeTheme = (value) => ({
   type: CHANGE_THEME,
@@ -128,8 +127,8 @@ export const registration = (email, password, name) => async dispatch => {
     dispatch(setUser(response.data.user))
     dispatch(setCity(response.data.user.city))
   } catch (e) {
-    dispatch(setTextException(e.response.data.errors[0].value +
-      ' is ' + e.response.data.errors[0].msg + ' of ' + e.response.data.errors[0].param))
+    dispatch(setTextException(e.response?.data?.errors[0].value +
+      ' is ' + e.response?.data?.errors[0].msg + ' of ' + e.response?.data?.errors[0].param))
     dispatch(setShowToast(true))
     console.log(e.response?.data?.message);
   }
@@ -149,7 +148,7 @@ export const logout = () => async dispatch => {
 export const checkAuth = () => async dispatch => {
   dispatch(setLoading(true))
   try {
-    const response = await axios.get(`${process.env.API_URL}/api/refresh`, {withCredentials: true})
+    const response = await AuthService.refresh()
     localStorage.setItem('token', response.data.accessToken);
     dispatch(setAuth(true))
     dispatch(setUser(response.data.user))

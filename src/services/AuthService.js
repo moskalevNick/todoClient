@@ -21,5 +21,9 @@ export default class AuthService {
         return $api.post(`/api/city/${city}`, {name})
     }
 
+    static async refresh() { 
+        return $api.get('/api/refresh', {withCredentials: true})
+    }
+
 }
 
