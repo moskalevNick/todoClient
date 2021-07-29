@@ -28,6 +28,7 @@ logs
 
 # firebase
 .firebase/
+.firebase/*
 .firebaserc
 
 # Local Netlify folder
