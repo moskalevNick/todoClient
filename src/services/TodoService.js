@@ -9,8 +9,8 @@ export default class TodoService {
         return $api.delete(`/api/todos/${id}`)
     }
 
-    static async addTodo( title ) {
-        return $api.put(`/api/todos`, {title: title})
+    static async addTodo( title, date ) {
+        return $api.put(`/api/todos`, {title: title, date:date})
     }
 
     static async removeAllChecked() {

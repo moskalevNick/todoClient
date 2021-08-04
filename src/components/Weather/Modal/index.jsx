@@ -24,10 +24,12 @@ const Modal = ({ isModalChangeCityOpen, setModalChangeCityOpen, setInputValue, i
           ></IonInput>
         </IonItem>
         {
-          !isCityValid && <div className={"invalidCity"}>invalid city</div>
+          !isCityValid && <div className={"invalidCity"}> invalid city, enter city with → </div>
         }
         <div className={"containerLink"}>
-          <a className={"exampleLink"} target={"_blank"} rel="noreferrer" href="http://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=53.9173&lon=27.5290&zoom=10">example</a>
+          <a className={"exampleLink"} target={"_blank"} rel="noreferrer" 
+            href="http://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=53.9173&lon=27.5290&zoom=10"
+          >example</a>
         </div>
         <IonButton 
           color="success"

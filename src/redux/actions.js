@@ -1,4 +1,4 @@
-import { SET_TODOS, CHANGE_THEME, SET_WEATHER, SET_LOADING, SET_AUTH, SET_USER, SHOW_TOAST, TEXT_EXCEPTION } from "./types"
+import { SET_TODOS, CHANGE_THEME, SET_LOADING, SET_AUTH, SET_USER, SHOW_TOAST, TEXT_EXCEPTION, SET_WEATHER } from "./types"
 import AuthService from "../services/AuthService";
 import TodoService from '../services/TodoService';
 
@@ -32,10 +32,14 @@ export const setUser = (value) => ({
   payload: value
 })
 
-export const setCity = (value, name) => {
+export const setCity = (city, name) => {
   return async dispatch => {
-    const user = await AuthService.setCity(value, name);
-    dispatch(setUser(user.data))
+    const data = await AuthService.setCity(city, name);
+    dispatch(setUser(data.data.user))
+    dispatch({
+    	type : SET_WEATHER,
+      payload : data.data.weather
+    }); 
   }
 }
 
@@ -58,9 +62,9 @@ export const removeTodo = (id) => async dispatch => {
   }
 };
 
-export const addTodo = ( title ) => async dispatch => {
+export const addTodo = ( title, date ) => async dispatch => {
   try{
-    await TodoService.addTodo(title);
+    await TodoService.addTodo(title, date);
     dispatch(setTodos())
   } catch (e) {
     console.log(e.response?.data?.message);
@@ -85,26 +89,9 @@ export const removeAllChecked = () => async dispatch => {
   }
 }
 
-export const fetchData = (city) => async dispatch => {
-  const weatherURL = process.env.REACT_APP_API_URL_WEATHER + city + process.env.REACT_APP_API_URL_WEATHER_2
-  try {
-    const responce = await fetch(weatherURL)
-    const data = await responce.json()
-    dispatch(setCity(city))
-    if ( data.cod === '404' ) {
-      console.log('error 404');
-    }
-    dispatch({
-      type : SET_WEATHER,
-      payload : data
-    })
-  }catch(e){
-    console.log(e);
-  }  
-}
-
 export const login = (name, password) => async dispatch => {
   try {
+    dispatch(setLoading(true))
     dispatch(setShowToast(false))
     const response = await AuthService.login(name, password);
     localStorage.setItem('token', response.data.accessToken);
@@ -115,34 +102,42 @@ export const login = (name, password) => async dispatch => {
     dispatch(setTextException(e.response?.data?.message))
     dispatch(setShowToast(true))
     console.log(e.response?.data?.message);
+  } finally{
+    dispatch(setLoading(false))
   }
 }
 
 export const registration = (email, password, name) => async dispatch => {
   try {
+    dispatch(setLoading(true))
     dispatch(setShowToast(false))
     const response = await AuthService.registration(email, password, name);
     localStorage.setItem('token', response.data.accessToken);
     dispatch(setAuth(true))
-    dispatch(setUser(response.data.user))
-    dispatch(setCity(response.data.user.city))
+    dispatch(setUser(response.data.user)) 
   } catch (e) {
     dispatch(setTextException(e.response?.data?.errors[0].value +
       ' is ' + e.response?.data?.errors[0].msg + ' of ' + e.response?.data?.errors[0].param))
-    dispatch(setShowToast(true))
-    console.log(e.response?.data?.message);
+      dispatch(setShowToast(true))
+      console.log(e.response?.data?.message);
+  } finally {
+    dispatch(setLoading(false))
   }
 }
 
 export const logout = () => async dispatch => {
   try {
+    dispatch(setLoading(true))
     await AuthService.logout();
     localStorage.removeItem('token');
     dispatch(setAuth(false))
     dispatch(setUser({}))
   } catch (e) {
     console.log(e.response?.data?.message);
+  } finally{
+    dispatch(setLoading(false))
   }
+  
 }
 
 export const checkAuth = () => async dispatch => {

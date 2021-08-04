@@ -51,13 +51,14 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className="userName">
-          {user.name}
+          what's up, {user.name}
         <FontAwesomeIcon 
           className={"iconMail"}
           hidden={user.isActivated}
           icon={faExclamationCircle}
           title='активируйте аккаунт'
         />
+        <div className={"activateAcc"} hidden={user.isActivated}>you need to activate your account by mail to use the service</div>
         </div>
         <div className="containerButtonChangeTheme">
           <NavLink to='/auth' className="buttonAuth" onClick={() => dispatch(logout())}>

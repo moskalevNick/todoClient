@@ -10,15 +10,31 @@ import ModalDelete from "../ModalDelete"
 import "./styles.css"
 
 const Container = ({type="main"}) => {
-	const [amount, setAmount] = useState(0)
+  const d = new Date()
+  let nowDate = d.getDate();
+  let nowMonth = d.getMonth() + 1;
+  const nowYear = d.getFullYear()
+
+  if (nowDate < 10){
+    nowDate = '0'+nowDate
+  }
+
+  if (nowMonth < 10){
+    nowMonth = '0'+nowMonth
+  }  
+
+  let currentDate = nowYear + "-" + nowMonth + "-" + nowDate
+
+  const [amount, setAmount] = useState(0)
 	const [isModalOpen, setModalOpen] = useState(false)
 	const [checkedTodo, setCheckedTodo] = useState(0)
 	const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
  	const [acceptTodo, setAcceptTodo] = useState({})
 	const [inputValue, setInputValue] = useState("")
-  
+  const [selectedDate, setSelectedDate] = useState(currentDate);
+ 
   const dispatch = useDispatch()
-  const { todos } = useSelector(state => state)
+  const { todos, user } = useSelector(state => state)
 
   useEffect(() => {
     if(todos.data){
@@ -59,7 +75,7 @@ const Container = ({type="main"}) => {
   }
 
 	const addNewTodo = () => {
-    dispatch(addTodo(inputValue))
+    dispatch(addTodo(inputValue, selectedDate))
     setModalOpen(false)
     setInputValue("")
   }
@@ -79,7 +95,7 @@ const Container = ({type="main"}) => {
 			<div className={"amount"}>
         <div className="content">
    			  <h1 className={"title"}>you have {amount} goals</h1>
-          <IonButton color="success" onClick={triggerModal} className={"plus"}>+</IonButton>
+          <IonButton color="success" onClick={triggerModal} className={"plus"} disabled={!user.isActivated}>+</IonButton>
         </div>
       </div>     
 			<TodoList 
@@ -102,6 +118,9 @@ const Container = ({type="main"}) => {
         isModalOpen={isModalOpen}
         inputValue={inputValue}
         addTodo={addNewTodo}
+        setSelectedDate={setSelectedDate}
+        currentDate={currentDate}
+        selectedDate={selectedDate}
       />
       <div className={"stat"}>
         <IonButton 

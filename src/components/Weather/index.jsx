@@ -5,7 +5,7 @@ import {IonButton} from "@ionic/react"
 import Card from "./Сard/index"
 import "./styles.css"
 import Modal from "./Modal/index"
-import { fetchData, setCity } from '../../redux/actions'
+import { setCity } from '../../redux/actions'
 
 const Weather = () => {
   const dispatch = useDispatch()
@@ -26,8 +26,8 @@ const Weather = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchData(user.city))   
-  }, [dispatch, user.city])
+    dispatch(setCity(user.city, user.name))   
+  }, [dispatch, user.city, user.name])
  
   useEffect(() => {   
     setDates( weather ) 
@@ -66,6 +66,30 @@ const Weather = () => {
       ( ( nowDate.getDate() + 2 ) < 10) ? `0${ nowDate.getDate() + 2 }` : nowDate.getDate() + 2
     }`
 
+    if(new Date(nowDate.getFullYear(), nowDate.getMonth()+1, 0).getDate() === afterTomorrowDate.slice(-2) - 1){
+      afterTomorrowDate = `${
+        nowDate.getFullYear()
+      }-${
+        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+      }-01`
+    }
+
+    if(new Date(nowDate.getFullYear(), nowDate.getMonth()+1, 0).getDate() === afterTomorrowDate.slice(-2) - 2){
+      afterTomorrowDate = `${
+        nowDate.getFullYear()
+      }-${
+        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+      }-02`
+    }
+
+    if(new Date(nowDate.getFullYear(), nowDate.getMonth()+1, 0).getDate() === tomorrowDate.slice(-2) - 1){
+      afterTomorrowDate = `${
+        nowDate.getFullYear()
+      }-${
+        ( ( nowDate.getMonth() + 2 ) < 10 ) ? `0${ nowDate.getMonth() + 2 }` : nowDate.getMonth() + 2
+      }-01`
+    }
+  
     if(new Date(2021, nowDate.getMonth() + 1, 0).getDate() === 30){ // month 30days
       if(nowDate.getDate() === 29){
         afterTomorrowDate = `${
@@ -156,19 +180,17 @@ const Weather = () => {
           if ( el.dt_txt.includes( afterTomorrowDate ) ) afterTomorrow.push( el )
         }
       } );
-      
-      
-  if (today.length === 1) {
-    today.unshift( null )
-    today.unshift( null )
-  }  
+        
+    if (today.length === 1) {
+      today.unshift( null )
+      today.unshift( null )
+    }   
   
-  if (today.length === 2) {
-    today.unshift( null )
-  }  
+    if (today.length === 2) {
+      today.unshift( null )
+    }  
 
   setWeatherByDays( { today, tomorrow, afterTomorrow } )
-
 }
 
   const trigerModalChangeCity = () => {
@@ -183,6 +205,7 @@ const Weather = () => {
           onClick={trigerModalChangeCity} 
           color="primary" 
           className={"buttonChange"}
+          disabled={!user.isActivated}
         >
           change city
         </IonButton>

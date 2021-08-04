@@ -15,7 +15,7 @@ const Card = ( { card } ) => {
         }
       </div>
       <img
-        src={`http://openweathermap.org/img/w/${card.weather[0].icon}.png`}
+        src={`https://openweathermap.org/img/w/${card.weather[0].icon}.png`}
         alt="weather status icon"
         className="weather-icon"
       />

@@ -1,9 +1,10 @@
 import React from "react"
-import {IonModal, IonItem, IonLabel, IonInput, IonButton} from "@ionic/react"
+import {IonModal, IonItem, IonLabel, IonInput, IonButton, IonDatetime} from "@ionic/react"
 
 import "./styles.css"
 
-const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }) => {
+const Modal = ({ addTodo, setSelectedDate, currentDate, selectedDate, inputValue, setInputValue, isModalOpen, setModalOpen }) => {
+
   return (
     <IonModal isOpen={isModalOpen} cssClass={"modal"}>
       <div className="openedModal">
@@ -23,12 +24,22 @@ const Modal = ({ addTodo, inputValue, setInputValue, isModalOpen, setModalOpen }
             }}  
           ></IonInput>
         </IonItem>
+        <IonItem>
+          <IonLabel>Choose deadline</IonLabel>
+          <IonDatetime 
+            displayFormat="DD MMM YYYY"
+            max="2022-12-31"
+            min={currentDate}
+            value={selectedDate}
+            onIonChange={e => setSelectedDate(e.detail.value)}>
+          </IonDatetime>
+        </IonItem>
         <IonButton 
           color="success"
           className={inputValue.trim() 
             ? "buttonAddEmptyModal" 
             : "buttonAddFullModal"} 
-          onClick={addTodo} 
+          onClick={ function(){ addTodo(); setSelectedDate(currentDate) }} 
           disabled={!inputValue.trim()}
         >Add todo</IonButton>
       </div>
