@@ -3,10 +3,11 @@ import { NavLink } from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {IonButton} from "@ionic/react"
 
-import { faMoon, faSun, faSignInAlt, faExclamationCircle } from "@fortawesome/free-solid-svg-icons"
+import { faMoon, faSun, faSignInAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./styles.css"
 import {changeTheme, logout} from '../../redux/actions'
+import BurgerMenu from "../BurgerMenu"
 
 const NavBar = () => {
   
@@ -22,9 +23,10 @@ const NavBar = () => {
   }  
 
   return (
-    <div>  
-      <nav className="navBar">
-        <div className="links">
+    <div id="App">  
+      <div className="burgerMenu"><BurgerMenu pageWrapId={"page-wrap"} outerContainerId={"App"}/></div>
+      <nav className="navBar" id="page-wrap">
+        <div className="links" >
           <NavLink 
             to="/" 
             className="navBar_item" exact activeClassName="underline" 
@@ -50,16 +52,7 @@ const NavBar = () => {
             Weather
           </NavLink>
         </div>
-        <div className="userName">
-          what's up, {user.name}
-        <FontAwesomeIcon 
-          className={"iconMail"}
-          hidden={user.isActivated}
-          icon={faExclamationCircle}
-          title='активируйте аккаунт'
-        />
-        <div className={"activateAcc"} hidden={user.isActivated}>you need to activate your account by mail to use the service</div>
-        </div>
+        <div className="userName">what's up, {user.name}</div>
         <div className="containerButtonChangeTheme">
           <NavLink to='/auth' className="buttonAuth" onClick={() => dispatch(logout())}>
           <FontAwesomeIcon 

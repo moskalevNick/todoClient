@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import { IonContent, useIonLoading  } from '@ionic/react';
 
-import { checkAuth, setTodos } from './redux/actions';
+import { checkAuth, logout, setTodos } from './redux/actions';
 import Container from "./components/Container"
 import NavBar from "./components/NavBar"
 import Weather from "./components/Weather"
@@ -12,7 +12,7 @@ import Registration from "./components/Registration"
 
 const App = () => {   
   const dispatch = useDispatch()
-  const { isAuth, isLoading } = useSelector(state => state)
+  const { isAuth, isLoading, user } = useSelector(state => state)
   const [present] = useIonLoading();
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -51,7 +51,18 @@ const App = () => {
 	)
   }
 
+  if(user && !user.isActivated){
 	return (
+		<div className="notActivate">
+			<h1>Доступ запрещен</h1>
+			<h1>На ваш почтовый адрес выслано письмо для подтверждения аккаунта</h1>
+			<h1>Для дальнейшего пользования сервисом активируйте аккаунт</h1>
+			<button onClick={() => dispatch(logout())}>на страницу регистрации</button>
+		</div>
+	)
+  }
+
+  return (
     <div>
       <Router>
       	<div className="container">

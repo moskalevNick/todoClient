@@ -205,7 +205,6 @@ const Weather = () => {
           onClick={trigerModalChangeCity} 
           color="primary" 
           className={"buttonChange"}
-          disabled={!user.isActivated}
         >
           change city
         </IonButton>

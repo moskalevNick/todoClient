@@ -43,3 +43,7 @@ body {
 .autorLink {
   color: var(--base-color-text);
 }
+
+.notActivate{
+  text-align: center;
+}

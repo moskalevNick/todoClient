@@ -34,7 +34,7 @@ const Container = ({type="main"}) => {
   const [selectedDate, setSelectedDate] = useState(currentDate);
  
   const dispatch = useDispatch()
-  const { todos, user } = useSelector(state => state)
+  const { todos } = useSelector(state => state)
 
   useEffect(() => {
     if(todos.data){
@@ -95,7 +95,7 @@ const Container = ({type="main"}) => {
 			<div className={"amount"}>
         <div className="content">
    			  <h1 className={"title"}>you have {amount} goals</h1>
-          <IonButton color="success" onClick={triggerModal} className={"plus"} disabled={!user.isActivated}>+</IonButton>
+          <IonButton color="success" onClick={triggerModal} className={"plus"}>+</IonButton>
         </div>
       </div>     
 			<TodoList 
