@@ -1,5 +1,4 @@
 .weatherContainer{
-    height: calc(100vh - 180px);
     overflow-y: auto;
     width: auto;
 }
@@ -14,96 +13,43 @@
     text-align: center;
 }
 
-.dayTitle {
-    transform: rotate(-90deg);
-    align-self: center;
-    text-align: center;
-    font-size: 1.5em;
-    width: 166px;
-    margin-left: -70px;
-    color: var(--base-color-text);
-}
-
 .weatherContainer{
-    display: grid;
-    grid-template-columns: 40px 1fr 1fr 1fr;
-    grid-template-areas: ". morning afternoon evening"
-                         "today card card card"
-                         "tomorrow card card card"
-                         "afterTomorrow card card card";
     text-align: center;
-    color: var(--base-color-text);
-    
-}
-
-.morning {
-    grid-area: morning;
-    width: 100px;
-    margin: auto;
-    font-size: 1.5em;
-}
-
-.afternoon {
-    grid-area: afternoon;
-    width: 100px;
-    margin: auto;
-    font-size: 1.5em;
-}
-
-.evening {
-    grid-area: evening;
-    width: 100px;
-    margin: auto;
-    font-size: 1.5em;
-}
-
-.today {
-    grid-area: today;
-    align-self: center;
-    text-align: center;
-    font-size: 1.5em;
-    width: 166px;
-    margin-left: -70px;
-    color: var(--base-color-text);
-}
-
-.tomorrow {
-    grid-area: tomorrow;
-    align-self: center;
-    text-align: center;
-    font-size: 1.5em;
-    width: 166px;
-    margin-left: -70px;
-    color: var(--base-color-text);
-}
-
-.afterTomorrow {
-    grid-area: afterTomorrow;
-    align-self: center;
-    text-align: center;
-    font-size: 1.5em;
-    width: 166px;
-    margin-left: -70px;
     color: var(--base-color-text);
 }
 
 .card {
-    grid-area: card;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 10px;
-    
-}
-
-.today, .tomorrow, .afterTomorrow {
-    transform: rotate(90deg);
+    margin: 30px auto;
 }
 
 .header > .ion-color-primary {
    --ion-color-contrast: var(--base-color-text) !important;
 }
 
+.weatherContainer >.ion-color-primary{
+    --ion-color-contrast: var(--base-color-text) !important;
+}
+
 .buttonChange{
     margin: auto;
     margin-left: 15px;
+}
+
+
+@media screen and (max-width: 460px) {
+    
+    .card {
+        grid-template-columns: 1fr;
+    }
+
+    .header{
+        flex-direction: column;
+    }
+
+    .buttonChange{   
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
 }

@@ -14,6 +14,7 @@ const Weather = () => {
   const [isModalChangeCityOpen, setModalChangeCityOpen] = useState(false)
   const [isCityValid, setCityValid] = useState(true)
   const [inputValue, setInputValue] = useState("")
+  const [weatherDay, setWeatherDay] = useState('today')
   const [weatherByDays, setWeatherByDays] = useState ({
     today: [],
     tomorrow: [],
@@ -179,8 +180,20 @@ const Weather = () => {
           if ( el.dt_txt.includes( tomorrowDate ) ) tomorrow.push( el )
           if ( el.dt_txt.includes( afterTomorrowDate ) ) afterTomorrow.push( el )
         }
+
+        if (el.dt_txt.includes( '9:00:00' )){
+          el.name = 'morning'
+        } 
+
+        if (el.dt_txt.includes( '15:00:00' )){
+          el.name = 'afternoon'
+        } 
+
+        if (el.dt_txt.includes( '21:00:00' )){
+          el.name = 'evening'
+        } 
       } );
-        
+
     if (today.length === 1) {
       today.unshift( null )
       today.unshift( null )
@@ -197,10 +210,16 @@ const Weather = () => {
     setModalChangeCityOpen((prev) => !prev)
   }
 
+  const currentWeather = weatherByDays[weatherDay]
+
+  if(!weatherByDays.today[2]){
+    return null
+  }
+
   return ( 
     <div>    
       <div className={"header"}>
-        <h1>weather for 3 days in {user.city} city</h1>
+        <h1>weather in {user.city} city</h1>
         <IonButton 
           onClick={trigerModalChangeCity} 
           color="primary" 
@@ -210,17 +229,28 @@ const Weather = () => {
         </IonButton>
       </div>
       <div className={"weatherContainer"}>
-        <div className={"morning"}>morning</div>
-        <div className={"afternoon"}>afternoon</div>
-        <div className={"evening"}>evening</div>
-        <div className={"today"}>today</div>
-        <div className={"tomorrow"}>tomorrow</div>
-        <div className={"afterTomorrow"}>after tomorrow</div>
+        <div>{weatherDay}, {
+          new Date(currentWeather[2].dt_txt).toLocaleString("en", {month: 'long',	day: 'numeric'})
+        }, {
+          new Date(currentWeather[2].dt_txt).toLocaleString('en', {weekday: 'long'})
+        }</div> 
         <div className={"card"}>{
-          [...weatherByDays.today, ...weatherByDays.tomorrow, ...weatherByDays.afterTomorrow].map( ( el, index ) => (
+          currentWeather.map( ( el, index ) => (
             <Card card={ el } key={ index }/>
           ) ) 
         }</div>
+        <IonButton onClick={() => setWeatherDay('today')}
+          color="primary" 
+          className={"buttonChangeWeather"}
+        >today</IonButton>
+        <IonButton onClick={() => setWeatherDay('tomorrow')} 
+          color="primary" 
+          className={"buttonChangeWeather"}
+        >tomorrow</IonButton>
+        <IonButton onClick={() => setWeatherDay('afterTomorrow')}
+          color="primary" 
+          className={"buttonChangeWeather"}
+        >aftertomorrow</IonButton>
       </div>
       <Modal
         setModalChangeCityOpen={setModalChangeCityOpen}

@@ -55,19 +55,19 @@ const NavBar = () => {
         <div className="userName">what's up, {user.name}</div>
         <div className="containerButtonChangeTheme">
           <NavLink to='/auth' className="buttonAuth" onClick={() => dispatch(logout())}>
-          <FontAwesomeIcon 
-            className={"icon"} 
-            icon = {faSignInAlt} 
-            size="2x"
-          />
-        </NavLink>
-        <IonButton onClick={triggerNight} className="buttonChangeTheme">
-          <FontAwesomeIcon 
-            className={"icon"} 
-            icon={themeIsDay ? faSun : faMoon} 
-            size="2x"
-          />
-        </IonButton> 
+            <FontAwesomeIcon 
+              className={"icon"} 
+              icon = {faSignInAlt} 
+              size="2x"
+            />
+          </NavLink>
+          <IonButton onClick={triggerNight} className="buttonChangeTheme">
+            <FontAwesomeIcon 
+              className={"icon"} 
+              icon={themeIsDay ? faSun : faMoon} 
+              size="2x"
+            />
+          </IonButton> 
         </div>
         
       </nav> 

@@ -8,11 +8,7 @@ const Card = ( { card } ) => {
   return ( 
     <div className={"cardItem"}> 
       <div>
-        {
-          new Date(card.dt_txt).toLocaleString("en", {month: 'short',	day: 'numeric'})
-        }, {
-          new Date(card.dt_txt).toLocaleString('en', {weekday: 'short'})
-        }
+        {card.name}
       </div>
       <img
         src={`https://openweathermap.org/img/w/${card.weather[0].icon}.png`}
