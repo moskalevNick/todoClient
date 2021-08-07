@@ -37,6 +37,10 @@
     margin-left: 15px;
 }
 
+.wrapper{
+    height: calc(100vh - 100px)
+}
+
 
 @media screen and (max-width: 460px) {
     
@@ -51,5 +55,9 @@
     .buttonChange{   
         margin: 0 auto;
         margin-bottom: 20px;
+    }
+
+    .wrapper{
+        height: auto;
     }
 }

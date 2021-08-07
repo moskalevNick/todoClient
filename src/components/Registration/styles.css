@@ -11,5 +11,15 @@
 
 .noAcc {
     width: 500px;
-    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+
+    .registrContainer {
+        width: 80%;
+    }
+
+    .noAcc {
+        text-align: left;
+    }
 }

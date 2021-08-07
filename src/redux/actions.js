@@ -1,4 +1,13 @@
-import { SET_TODOS, CHANGE_THEME, SET_LOADING, SET_AUTH, SET_USER, SHOW_TOAST, TEXT_EXCEPTION, SET_WEATHER } from "./types"
+import {
+  CHANGE_THEME,
+  SET_AUTH,
+  SET_LOADING,
+  SET_TODOS,
+  SET_USER,
+  SET_WEATHER,
+  SHOW_TOAST,
+  TEXT_EXCEPTION
+} from "./types"
 import AuthService from "../services/AuthService";
 import TodoService from '../services/TodoService';
 
@@ -35,11 +44,18 @@ export const setUser = (value) => ({
 export const setCity = (city, name) => {
   return async dispatch => {
     const data = await AuthService.setCity(city, name);
-    dispatch(setUser(data.data.user))
-    dispatch({
-    	type : SET_WEATHER,
-      payload : data.data.weather
-    }); 
+    if (data.data.weather.cod === '404') {
+      dispatch(setTextException('invalid city, use example'))
+      dispatch(setShowToast(true))
+      await AuthService.setCity('minsk', name)
+    } else {
+      dispatch(setUser(data.data.user))
+      dispatch({
+        type: SET_WEATHER,
+        payload: data.data.weather
+      });
+    }
+
   }
 }
 
@@ -47,14 +63,14 @@ export const setTodos = () => {
   return async dispatch => {
     const data = await AuthService.getTodos();
     dispatch({
-    	type : SET_TODOS,
-      payload : data
-    });   
+      type: SET_TODOS,
+      payload: data
+    });
   };
 };
 
 export const removeTodo = (id) => async dispatch => {
-  try{
+  try {
     await TodoService.removeTodo(id)
     dispatch(setTodos())
   } catch (e) {
@@ -62,8 +78,8 @@ export const removeTodo = (id) => async dispatch => {
   }
 };
 
-export const addTodo = ( title, date ) => async dispatch => {
-  try{
+export const addTodo = (title, date) => async dispatch => {
+  try {
     await TodoService.addTodo(title, date);
     dispatch(setTodos())
   } catch (e) {
@@ -72,19 +88,19 @@ export const addTodo = ( title, date ) => async dispatch => {
 };
 
 export const changeTodo = (id, type) => async dispatch => {
-	try{
-    await TodoService.changeTodo(id, type); 
-    dispatch(setTodos())  
-	} catch (e) {
+  try {
+    await TodoService.changeTodo(id, type);
+    dispatch(setTodos())
+  } catch (e) {
     console.log(e.response?.data?.message);
   }
 }
 
 export const removeAllChecked = () => async dispatch => {
-	try{
+  try {
     await TodoService.removeAllChecked()
     dispatch(setTodos())
-	}catch (e){
+  } catch (e) {
     console.log(e.response?.data?.message);
   }
 }
@@ -102,7 +118,7 @@ export const login = (name, password) => async dispatch => {
     dispatch(setTextException(e.response?.data?.message))
     dispatch(setShowToast(true))
     console.log(e.response?.data?.message);
-  } finally{
+  } finally {
     dispatch(setLoading(false))
   }
 }
@@ -114,12 +130,12 @@ export const registration = (email, password, name) => async dispatch => {
     const response = await AuthService.registration(email, password, name);
     localStorage.setItem('token', response.data.accessToken);
     dispatch(setAuth(true))
-    dispatch(setUser(response.data.user)) 
+    dispatch(setUser(response.data.user))
   } catch (e) {
     dispatch(setTextException(e.response?.data?.errors[0].value +
-      ' is ' + e.response?.data?.errors[0].msg + ' of ' + e.response?.data?.errors[0].param))
-      dispatch(setShowToast(true))
-      console.log(e.response?.data?.message);
+        ' is ' + e.response?.data?.errors[0].msg + ' of ' + e.response?.data?.errors[0].param))
+    dispatch(setShowToast(true))
+    console.log(e.response?.data?.message);
   } finally {
     dispatch(setLoading(false))
   }
@@ -134,10 +150,10 @@ export const logout = () => async dispatch => {
     dispatch(setUser({}))
   } catch (e) {
     console.log(e.response?.data?.message);
-  } finally{
+  } finally {
     dispatch(setLoading(false))
   }
-  
+
 }
 
 export const checkAuth = () => async dispatch => {

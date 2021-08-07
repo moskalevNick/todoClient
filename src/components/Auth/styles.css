@@ -1,6 +1,5 @@
 @import "../../index.css";
 
-
 .loginContainer {
     width: 500px;
     margin: 0 auto;
@@ -13,4 +12,15 @@
 .noAcc {
     width: 500px;
     text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+
+    .loginContainer {
+        width: 80%;
+    }
+
+    .noAcc {
+        text-align: left;
+    }
 }
