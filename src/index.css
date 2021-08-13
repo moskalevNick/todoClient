@@ -3,8 +3,9 @@ body[color-theme="dark"] {
   --base-color-list: #2b1e50;
   --base-color-text: #dddddd;
   --base-color-modal: #2e203b;
-  --base-color-nav:  #482369;
+  --base-color-nav: #3a3535;
   --base-color-active:  #000000;
+  --base-color-nonactive: #757575;
 }
 
 body[color-theme="light"] {
@@ -12,8 +13,9 @@ body[color-theme="light"] {
   --base-color-list: #85b7f8;
   --base-color-text: #000000;
   --base-color-modal: #94a7db;
-  --base-color-nav:  #7796fd;
+  --base-color-nav:  #ffffff;
   --base-color-active:  #ffffff;
+  --base-color-nonactive: #858585;
 }
 
 body {

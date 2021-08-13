@@ -69,8 +69,8 @@ const NavBar = () => {
             />
           </IonButton> 
         </div>
-        
-      </nav> 
+      </nav>
+      <hr />
     </div>  
 	)
 }
