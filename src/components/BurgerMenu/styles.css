@@ -1,0 +1,27 @@
+.burgerMenu{
+    position:absolute;
+    z-index: 300;
+    display: grid;
+    background: var(--base-color-burger);
+    font-size: 1.15em;
+    width: 30%;
+}
+
+.burgerItem{
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: var(--base-color-nonactive);
+    transition: color 0.2s;
+}
+
+.underline{
+    color: var(--base-color-active);
+    text-decoration: underline;
+  }
+
+.buttonCloseMenu{
+    right:0%;
+    position: absolute;
+    z-index: 300;
+}

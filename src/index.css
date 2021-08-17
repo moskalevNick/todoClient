@@ -1,51 +1,65 @@
 body[color-theme="dark"] {
-  --base-color-header: #3a3535;
-  --base-color-list: #2b1e50;
-  --base-color-text: #dddddd;
-  --base-color-modal: #2e203b;
-  --base-color-nav: #3a3535;
-  --base-color-active:  #000000;
-  --base-color-nonactive: #757575;
+    --base-color-header: #3a3535;
+    --base-color-list: #4d4d4d;
+    --base-color-text: #dddddd;
+    --base-color-modal: #2e203b;
+    --base-color-nav: #3a3535;
+    --base-color-active:  #ffffff;
+    --base-color-nonactive: #757575;
+    --base-color-burger: #3d3d3d;
+  }
+  
+  body[color-theme="light"] {
+    --base-color-header: #ffffff;
+    --base-color-list: #8d8d8d;
+    --base-color-text: #000000;
+    --base-color-modal: #94a7db;
+    --base-color-nav:  #ffffff;
+    --base-color-active: #000000;
+    --base-color-nonactive: #5f5f5f;
+    --base-color-burger: #adadad;
+  }
+
+*{
+    color: var(--base-color-text);
 }
 
-body[color-theme="light"] {
-  --base-color-header: #ffffff;
-  --base-color-list: #85b7f8;
-  --base-color-text: #000000;
-  --base-color-modal: #94a7db;
-  --base-color-nav:  #ffffff;
-  --base-color-active:  #ffffff;
-  --base-color-nonactive: #858585;
+button{
+    border: none;
+    background-color: var(--base-color-list);
 }
 
-body {
-  overflow-x:hidden;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app {
+    display: grid;
+    grid-template-areas:"navbar header" 
+                        "navbar todolist";
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 100px 1fr;
+    grid-gap: 10px;
 }
 
-.container {
-  width: 100vw;
-  min-height: 100vh;
-  background-color: var(--base-color-header);
+.navBar{
+    grid-area: navbar;
+    background-color: var(--base-color-list);
 }
 
-.blocked-modal {
-  display: none;
+.header{
+    grid-area: header;
+    background-color: var(--base-color-list);
 }
 
-.autor{
-  position:relative;
-  text-align: right;
+.todoList{
+    grid-area: todolist;
+    background-color: var(--base-color-list);
 }
 
-.autorLink {
-  color: var(--base-color-text);
-}
+@media screen and (max-width: 600px) {
 
-.notActivate{
-  text-align: center;
+    .navBar{
+        display: none;
+    }
+
+    .app {
+        display: block
+    }
 }

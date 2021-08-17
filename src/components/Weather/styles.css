@@ -3,7 +3,7 @@
     width: auto;
 }
 
-.header{
+.headerWeather{
     margin: auto;
     display: flex;
     width: fit-content;
@@ -24,10 +24,10 @@
     margin: 30px auto;
 }
 
-.header > .ion-color-primary {
+.headerWeather > .ion-color-primary {
    --ion-color-contrast: var(--base-color-text) !important;
 }
-
+ 
 .weatherContainer >.ion-color-primary{
     --ion-color-contrast: var(--base-color-text) !important;
 }
@@ -38,7 +38,7 @@
 }
 
 .wrapper{
-    height: calc(100vh - 100px)
+    height: calc(100vh - 130px)
 }
 
 
@@ -47,8 +47,8 @@
     .card {
         grid-template-columns: 1fr;
     }
-
-    .header{
+ 
+    .headerWeather{
         flex-direction: column;
     }
 

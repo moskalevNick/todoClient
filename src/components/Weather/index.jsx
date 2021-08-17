@@ -256,7 +256,7 @@ const Weather = () => {
 
     return (
         <div className={'wrapper'}>
-            <div className={"header"}>
+            <div className={"headerWeather"}>
                 <h1>weather in {user.city} city</h1>
                 <IonButton
                     onClick={trigerModalChangeCity}

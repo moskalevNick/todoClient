@@ -1,5 +1,4 @@
 import React from "react"
-import {IonCheckbox, IonButton} from "@ionic/react"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import classNames from 'classnames';
@@ -67,9 +66,9 @@ const TodoItem = ( {element, changeTodo, triggerModalDelete} ) => {
   
   return (
     <div className={"todo"}>
-      <IonCheckbox slot="start" color="danger"
+      <input type="checkbox" slot="start" color="danger"
         checked={element.checked}
-        onIonChange={changeTodo.bind(null, element._id, "checked")} 
+        onChange={changeTodo.bind(null, element._id, "checked")}
       />
       <div 
 				className={ todoNames }  
@@ -78,14 +77,14 @@ const TodoItem = ( {element, changeTodo, triggerModalDelete} ) => {
         { element.title }
       </div>
       <div>{deadline}</div>
-      <IonButton 
+      <button
         className={"deleteButton"} 
         onClick={triggerModalDelete.bind(null, element)}>
         <FontAwesomeIcon 
 				  className={"icon"} 
 				  icon={faTrash} 
 			  />
-      </IonButton>
+      </button>
     </div>
   )
 }

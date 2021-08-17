@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar"
 import Weather from "./components/Weather"
 import Auth from "./components/Auth"
 import Registration from "./components/Registration"
+import Header from "./components/Header"
 
 const App = () => {
 	const dispatch = useDispatch()
@@ -63,10 +64,11 @@ const App = () => {
 	}
 
 	return (
-		<div>
+		<div className="app">
 			<Router>
-				<div className="container">
-					<NavBar/>
+				<NavBar/>
+				<Header/>
+				<div className={"todoList"}>
 					<Switch>
 						<Route path="/" exact>
 							<Container type={"main"}/>
@@ -86,14 +88,6 @@ const App = () => {
 
 						<Redirect to="/"/>
 					</Switch>
-					<footer className={"autor"}>
-						<a
-							className="autorLink"
-							href="http://www.linkedin.com/in/nickmoskalev/"
-							target="_blank"
-							rel="noreferrer"
-						>ⓒMoskalevNick</a>
-					</footer>
 				</div>
 			</Router>
 			<IonToast

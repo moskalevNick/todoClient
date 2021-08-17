@@ -1,10 +1,11 @@
-.list {
-    height: calc(100vh - 270px);
+.list{
+    height: calc(100vh - 260px);
     overflow-y: auto;
-    width: auto;
-  }
-  
-  .noTodos {
-    color: var(--base-color-text);
-    text-align: center;
-  }
+}
+
+
+@media screen and (max-width: 600px) {
+    .list{
+        height: calc(100vh - 170px);
+    }
+}

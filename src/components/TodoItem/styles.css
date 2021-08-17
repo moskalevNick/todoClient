@@ -3,8 +3,6 @@
   justify-content: space-between;
   align-items: center;
   margin: 4px auto;
-  color: var(--base-color-text);
-  background: var(--base-color-list);
   padding: 16px;
   border-radius: 5px;
   width: 90%;
@@ -15,7 +13,6 @@
   transition: 0.1s;
   width: 30px;
   height: 30px;
-  --ion-color-primary: var(--base-color-list); 
 }
 
 .todo > .deleteButton:hover {
@@ -23,11 +20,6 @@
   transition: 0.1s;
   width: 30px;
   height: 30px;
-}
-
-.todo > .button-solid{
-  --box-shadow: 0;
-  --background-hover: 0;
 }
 
 .label,
@@ -51,14 +43,5 @@
 .checkedTodo {
   text-decoration:line-through;
   font-weight:normal;
-  color: var(--base-color-text);
   text-transform:none;
 }
-
-.icon {
-  color: var(--base-color-text);
-}
-
-.todo > .ion-color-danger{
-  --ion-color-contrast: var(--base-color-text) !important;
-} 

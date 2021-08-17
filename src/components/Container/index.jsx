@@ -1,15 +1,16 @@
-import React, {useEffect, useMemo, useState} from "react"
-import {useDispatch, useSelector} from 'react-redux'
-import {IonButton} from "@ionic/react"
+import React, { useEffect, useMemo, useState } from "react"
+import { useDispatch, useSelector } from 'react-redux'
 
-import {addTodo, changeTodo, removeAllChecked, removeTodo, setTodos} from '../../redux/actions'
+import { addTodo, changeTodo, removeAllChecked, removeTodo, setTodos } from '../../redux/actions'
 import TodoList from "../TodoList"
 import Meter from "../Meter"
 import Modal from "../Modal"
 import ModalDelete from "../ModalDelete"
 import "./styles.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 
-const Container = ({type = "main"}) => {
+const Container = ({ type = "main" }) => {
   const d = new Date()
   let nowDate = d.getDate();
   let nowMonth = d.getMonth() + 1;
@@ -34,7 +35,7 @@ const Container = ({type = "main"}) => {
   const [selectedDate, setSelectedDate] = useState(currentDate);
 
   const dispatch = useDispatch()
-  const {todos} = useSelector(state => state)
+  const { todos } = useSelector(state => state)
 
   useEffect(() => {
     if (todos.data) {
@@ -91,45 +92,48 @@ const Container = ({type = "main"}) => {
   }
 
   return (
-      <div className="box">
-        <div className={"amount"}>
-          <div className="content">
-            <h1 className={"title"}>you have {amount} goals</h1>
-            <IonButton color="success" onClick={triggerModal} className={"plus"}>+</IonButton>
-          </div>
-        </div>
-        <TodoList
-            todos={currentTodos}
-            changeTodo={changeCurrentTodo}
-            triggerModalDelete={triggerModalDelete}
-        />
-        <Meter checkedTodo={checkedTodo}/>
-        <ModalDelete
-            setModalDeleteOpen={setModalDeleteOpen}
-            isModalDeleteOpen={isModalDeleteOpen}
-            triggerModalDelete={triggerModalDelete}
-            acceptTodo={acceptTodo}
-            removeTodo={removeTodoById}
-            removeAllChecked={removeCheckedTodos}
-        />
-        <Modal
-            setInputValue={setInputValue}
-            setModalOpen={setModalOpen}
-            isModalOpen={isModalOpen}
-            inputValue={inputValue}
-            addTodo={addNewTodo}
-            setSelectedDate={setSelectedDate}
-            currentDate={currentDate}
-            selectedDate={selectedDate}
-        />
-        <div className={"stat"}>
-          <IonButton
-              color="danger"
-              onClick={triggerModalDelete}
-              disabled={!checkedTodo}
-          >Delete all checked</IonButton>
-        </div>
+    <div>
+      <div className={"title"}>
+        <h1>you have {amount} goals</h1>
+        <button onClick={triggerModal}>
+          <FontAwesomeIcon
+            className={"icon"}
+            size="2x"
+            icon={faPlusCircle} />
+        </button>
       </div>
+      <TodoList
+        todos={currentTodos}
+        changeTodo={changeCurrentTodo}
+        triggerModalDelete={triggerModalDelete}
+      />
+      <Meter checkedTodo={checkedTodo} />
+      <ModalDelete
+        setModalDeleteOpen={setModalDeleteOpen}
+        isModalDeleteOpen={isModalDeleteOpen}
+        triggerModalDelete={triggerModalDelete}
+        acceptTodo={acceptTodo}
+        removeTodo={removeTodoById}
+        removeAllChecked={removeCheckedTodos}
+      />
+      <Modal
+        setInputValue={setInputValue}
+        setModalOpen={setModalOpen}
+        isModalOpen={isModalOpen}
+        inputValue={inputValue}
+        addTodo={addNewTodo}
+        setSelectedDate={setSelectedDate}
+        currentDate={currentDate}
+        selectedDate={selectedDate}
+      />
+      <div className={"stat"}>
+        <button
+          className={"buttonDeleteAllChecked"}
+          onClick={triggerModalDelete}
+          disabled={!checkedTodo}
+        >Delete all checked</button>
+      </div>
+    </div>
   )
 }
 
