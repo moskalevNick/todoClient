@@ -101,10 +101,20 @@ const Container = ({ type = "main" }) => {
     dispatch(removeAllChecked())
     setModalDeleteOpen(false)
   }
-  
+
+  /* let filteredTodos =[]
+
+  if (currentTodos){
+    filteredTodos = currentTodos.slice()
+  } */
+
   const filterTodo = (deadline) => {
-    return currentTodos.filter((el) => el.deadline === deadline)
+    //filteredTodos = currentTodos.filter((el) => el.deadline === deadline)
+    //return filteredTodos
   }
+  /* 
+  console.log('currentTodos: ', currentTodos);
+  console.log('filteredTodos: ', filteredTodos); */
 
   return (
     <div>

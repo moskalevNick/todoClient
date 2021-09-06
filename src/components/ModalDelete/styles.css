@@ -16,13 +16,16 @@
 }
 
 .delete-modal > .buttons-delete > .button-sure{
-  margin: 10px;
-  height: 30px;
-  color: green;
+  font-size: 20px;
+  background: #5bff82;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 5px;
 }
 
 .delete-modal > .buttons-delete > .button-cancel{
-  margin: 10px;
-  height: 30px;
-  color: red;
+  font-size: 20px;
+  background: #ff4b4b;
+  border-radius: 5px;
+  padding: 10px;
 }

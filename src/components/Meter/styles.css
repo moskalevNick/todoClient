@@ -5,15 +5,15 @@
 
 .red-meter{
     --progress-background: red !important;
-    background-color: salmon;
+    --background: salmon;
 }
 
 .yellow-meter{
     --progress-background: rgb(245 245 93) !important;
-    background-color: rgb(255 252 0);
+    --background: rgb(177 176 51);
 }
 
 .green-meter{
     --progress-background: rgb(19, 219, 19) !important;
-    background-color: rgb(4, 114, 4);
+    --background: rgb(4, 114, 4);
 }

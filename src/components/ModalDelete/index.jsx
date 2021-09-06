@@ -4,7 +4,7 @@ import { Modal } from "../../ui/Modal"
 
 const ModalDelete = ({ isModalDeleteOpen, removeTodo, acceptTodo, setModalDeleteOpen, removeAllChecked }) => {
   return (
-    <Modal isOpen={isModalDeleteOpen}>
+    <Modal isOpen={isModalDeleteOpen} onClose={setModalDeleteOpen}>
       <div className={"delete-modal"}>
         <div className={"title-modal"}>
           Are you sure, you wanna delete {acceptTodo._id ? `"${acceptTodo.title}"` : "all checked todos"} ?

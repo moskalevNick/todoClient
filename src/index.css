@@ -7,7 +7,7 @@ body[color-theme="dark"] {
     --base-color-text: #727272;
     --base-color-modal: #2b2b2b;
     --base-color-active:  #ff4b4b;
-    --base-color-nonactive: #3d3d3d;
+    --base-color-nonactive: #999999;
     --base-color-burger: #3d3d3d;
     --base-color-trash-icon: #3d3d3d;
   }
@@ -21,7 +21,7 @@ body[color-theme="dark"] {
     --base-color-text: #000000;
     --base-color-modal: #ffffff;
     --base-color-active: #ff4b4b;
-    --base-color-nonactive: #5f5f5f;
+    --base-color-nonactive: #4e4e4e;
     --base-color-burger: #adadad;
     --base-color-trash-icon: #ffffff;
   }
@@ -29,10 +29,15 @@ body[color-theme="dark"] {
 *{
     color: var(--base-color-text);
     font-family: 'Roboto', sans-serif;
+    --background: var(--base-color-modal)
 }
 
 button{
     border: none;
+}
+
+body > .hydrated{
+    color:white
 }
 
 .app {
@@ -43,6 +48,7 @@ button{
     grid-template-rows: 70px 1fr;
     grid-gap: 10px;
     background-color: var(--base-color-app);
+    min-height: 98vh;
 }
 
 .navBar-container{
