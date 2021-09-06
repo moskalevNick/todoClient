@@ -8,7 +8,7 @@ const TodoList = ( {todos, changeTodo, triggerModalDelete} ) => {
   }
   return (
     <div className={"list"}>
-        {todos.length === 0 && <p className={"noTodos"}>there are no todos yet <br/>(or they waiting from server)</p>}
+        {todos.length === 0 && <p className={"no-todos"}>there are no todos yet <br/>(or they waiting from server)</p>}
         {todos.map((element) => (
           <TodoItem 
             triggerModalDelete={triggerModalDelete}

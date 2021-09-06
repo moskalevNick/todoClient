@@ -7,12 +7,12 @@ import "./styles.css"
 const Meter = ({checkedTodo}) => {
     let meterNames = classNames({
         'meter': true,
-        'redMeter': checkedTodo / 100 < 0.33,
-        'yellowmeter': checkedTodo / 100 > 0.33 && checkedTodo / 100 < 0.66,
-        'greenMeter': checkedTodo / 100 > 0.66
+        'red-meter': checkedTodo / 100 < 0.33,
+        'yellow-meter': checkedTodo / 100 > 0.33 && checkedTodo / 100 < 0.66,
+        'green-meter': checkedTodo / 100 > 0.66
     });
     return (
-        <div className="meter-container">
+        <div className="meter">
             <IonProgressBar value={checkedTodo / 100} className={meterNames}/>
         </div>
     )

@@ -1,17 +1,28 @@
-.buttonsDelete {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 40px;
+.delete-modal {
+  height: 400px;
+  width: 300px;
+  background: var(--base-color-modal);
+  box-shadow: 0 0 20px 10px #d7d7d7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
 }
-  
-.titleModal{
-  color: var(--base-color-text);
+
+.delete-modal > .title-modal{
   text-align: center;
-  padding-top: 95px;
-  padding-bottom: 50px;  
+  margin: 150px 0;
 }
- 
-.buttonsDelete > .ion-color-danger,
-.buttonsDelete > .ion-color-success{
-  --ion-color-contrast: var(--base-color-text) !important;
-} 
+
+.delete-modal > .buttons-delete > .button-sure{
+  margin: 10px;
+  height: 30px;
+  color: green;
+}
+
+.delete-modal > .buttons-delete > .button-cancel{
+  margin: 10px;
+  height: 30px;
+  color: red;
+}

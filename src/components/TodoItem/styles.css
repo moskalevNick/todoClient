@@ -1,47 +1,57 @@
 .todo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4px auto;
-  padding: 16px;
-  border-radius: 5px;
-  width: 90%;
-}
-
-.todo > .deleteButton {
-  font-size: 15px;
-  transition: 0.1s;
-  width: 30px;
-  height: 30px;
-}
-
-.todo > .deleteButton:hover {
-  font-size: 20px;
-  transition: 0.1s;
-  width: 30px;
-  height: 30px;
-}
-
-.label,
-.importantTodo {
-  cursor: pointer;
-  width: 250px;
-  text-align: start;
-  border-radius: 5px;
-  white-space: nowrap;
+  background: var(--base-color-dates);
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px 2px #a3a3a3;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  height: 70px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
+  margin-bottom: 15px;
 }
 
-.importantTodo {
-  text-transform: uppercase;
-  font-weight: 700;
-  color: rgb(241, 18, 18);
+.todo > .checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.checkedTodo {
-  text-decoration:line-through;
-  font-weight:normal;
-  text-transform:none;
+.todo > .info-container {
+  padding: 15px;
+}
+
+.todo > .info-container > .label {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.todo > .info-container > .text {
+  margin: 0;
+}
+
+.todo > .button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 10px 10px 0;
+  background: #ff4b4b;
+}
+
+.todo > .button-container > .button {
+  background: transparent;
+}
+
+.todo > .button-container > .button > svg {
+  height: 22px;
+  width: 22px;
+  transition: 0.2s;
+}
+
+.todo > .button-container > .button > svg > path {
+  fill: var(--base-color-trash-icon);
+}
+
+.todo > .button-container > .button > svg:hover {
+  height: 26px;
+  width: 26px;
+  transition: 0.2s;
 }

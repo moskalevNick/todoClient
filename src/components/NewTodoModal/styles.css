@@ -1,0 +1,167 @@
+.new-todo-modal {
+  height: 400px;
+  width: 300px;
+  background: var(--base-color-modal);
+  box-shadow: 0 0 20px 10px #d7d7d7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+}
+
+.new-todo-modal > .close-container {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.new-todo-modal > .close-container > .close-button {
+  background: transparent;
+  transition: 0.3s;
+}
+
+.new-todo-modal > .close-container > .close-button:hover {
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.new-todo-modal > .close-container > .close-button > svg > path {
+  fill: #ff4b4b;
+}
+
+.new-todo-modal > .input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.new-todo-modal > .input-container > .text {
+  margin: 5px;
+  font-size: 20px;
+}
+
+.new-todo-modal > .input-container > input {
+  border: none;
+  border-bottom: 3px solid black;
+  font-size: 18px;
+}
+
+.new-todo-modal > .input-container > input:focus {
+  outline: none;
+}
+
+.new-todo-modal > .date-container {
+  height: 100px;
+}
+
+.new-todo-modal > .date-container > .text {
+  margin: 5px;
+  font-size: 20px;
+}
+
+.new-todo-modal > .btn-container {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.new-todo-modal > .btn-container > .button,
+.new-todo-modal > .btn-container > .disabled {
+  height: 50px;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: none;
+  background: #5bff82;
+  color: var(--base-color-text);
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.new-todo-modal > .btn-container > .button:hover {
+  opacity: 0.6;
+}
+
+.new-todo-modal > .btn-container > .disabled {
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+/*.close-button {*/
+/*  border-radius: 50%;*/
+/*  margin-left: 345px;*/
+/*  margin-top: 20px;*/
+/*  margin-bottom: 40px;*/
+/*} */
+
+/*.sc-ion-modal-md  {*/
+/*  --width: 400px;*/
+/*  --height: 330px;*/
+/*  --border-radius: 5px;*/
+/*}*/
+
+/*.buttonAddFullModal,*/
+/*.buttonAddEmptyModal {*/
+/*  margin-left: 130px;*/
+/*  margin-right: 130px;*/
+/*  height: 40px;*/
+/*  width: 140px;*/
+/*  margin-top: 80px;*/
+/*}*/
+
+
+/*@media screen and (max-width: 400px) {*/
+/*  .sc-ion-modal-md  {*/
+/*    --width: 90vw;*/
+/*  }*/
+
+/*  .close-button{*/
+/*    margin-left: 75vw;*/
+/*  }*/
+
+/*  .buttonAddFullModal,*/
+/*  .buttonAddEmptyModal {*/
+/*    margin-left: 30vw;*/
+/*  }*/
+/*}*/
+
+/*.openedModal > .ion-color-danger{*/
+/*  --ion-color-contrast: var(--base-color-text) !important;*/
+/*} */
+
+/*.openedModal > .ion-color-success{*/
+/*  --ion-color-contrast: var(--base-color-text) !important;*/
+/*} */
+
+/*.item-has-focus{*/
+/*  --highlight-color-focused: #c93434 ;*/
+/*}*/
+
+/*.inputWindow {*/
+/*  color: var(--base-color-text);*/
+/*}*/
+
+/*.iconX {*/
+/*  color: var(--base-color-text);*/
+/*}*/
+
+/*.openedModal{*/
+/*  background-color: var(--base-color-list);*/
+/*  */
+/*  width: var(--width);*/
+/*  height: var(--height);*/
+/*  border-radius: 2px;*/
+/*}*/
+
+/*.modal-wrapper {*/
+/* margin-bottom: 260px;*/
+/*}*/

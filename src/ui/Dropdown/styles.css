@@ -1,0 +1,35 @@
+.wrapper {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.wrapper > .dropdown-header > .header-title > .title-bold {
+  margin: 0;
+}
+
+.wrapper > .list {
+  background: #bdbdbd;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: auto;
+  z-index: 1000;
+  font-size: 20px;
+  padding: 5px 0;
+  scrollbar-width: none;
+}
+
+.wrapper > .list::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper > .list > .list-item {
+  background-color: inherit;
+  cursor: pointer;
+  padding: 3px 10px;
+  font-size: 18px;
+}

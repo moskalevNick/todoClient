@@ -1,17 +1,33 @@
-.navBar{
-    display: grid;
-    grid-template-rows: 20px 20px 20px 20px;
+.navBar-container {
+  padding: 35px 0;
+  background-color: var(--base-color-navbar);
 }
 
-.navBar_item{
-    margin-top: 55px;
-    justify-self: center;
-    align-self: center;
-    text-decoration: none;
-    color: var(--base-color-nonactive);
+.navBar-container > .navBar {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 40px);
+  grid-row-gap: 5px;
+  border-right: 1px solid rgba(137, 137, 137, 0.25);
 }
 
-.underline{
-    color: var(--base-color-active);
-    text-decoration: underline;
+.navBar-container > .navBar > .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.navBar-container > .navBar > .item:hover {
+  font-size: 25px;
+  transition: 0.2s;
+}
+
+@media screen and (max-width: 700px) {
+  .navBar-container {
+    display: none;
   }
+}

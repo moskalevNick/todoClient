@@ -2,9 +2,9 @@ import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {IonButton} from "@ionic/react"
 
-import Card from "./Сard/index"
+import Card from "./Card/index"
 import "./styles.css"
-import Modal from "./Modal/index"
+import WeatherModal from "./Modal/index"
 import {setCity} from '../../redux/actions'
 
 const Weather = () => {
@@ -252,8 +252,6 @@ const Weather = () => {
         }
     }
 
-
-
     return (
         <div className={'wrapper'}>
             <div className={"headerWeather"}>
@@ -302,7 +300,7 @@ const Weather = () => {
                            disabled={buttonChangeWeatherAftertomorrowHidden}
                 >aftertomorrow</IonButton>
             </div>
-            <Modal
+            <WeatherModal
                 setModalChangeCityOpen={setModalChangeCityOpen}
                 isModalChangeCityOpen={isModalChangeCityOpen}
                 setInputValue={setInputValue}

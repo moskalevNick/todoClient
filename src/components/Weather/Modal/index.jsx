@@ -1,12 +1,13 @@
 import React from "react"
-import {IonModal, IonItem, IonLabel, IonInput, IonButton} from "@ionic/react"
+import {IonItem, IonLabel, IonInput, IonButton} from "@ionic/react"
+import {Modal} from "../../../ui/Modal"
 
 import "./styles.css"
 
-const Modal = ({ isModalChangeCityOpen, setModalChangeCityOpen, setInputValue, inputValue, changeCity, isCityValid }) => {
+const WeatherModal = ({ isModalChangeCityOpen, setModalChangeCityOpen, setInputValue, inputValue, changeCity, isCityValid }) => {
   return (
-    <IonModal isOpen={isModalChangeCityOpen} cssClass={"modal"}>
-      <div className="openedModal">
+    <Modal isOpen={isModalChangeCityOpen}>
+      <div className={"weather-modal"}>
         <IonButton color="danger" className={"close-button"} onClick={setModalChangeCityOpen.bind(null, false)}>X</IonButton>
         <IonItem>
           <IonLabel position="floating">Write your city here</IonLabel>
@@ -40,8 +41,8 @@ const Modal = ({ isModalChangeCityOpen, setModalChangeCityOpen, setInputValue, i
           disabled={!inputValue.trim()}
         >Change</IonButton>
       </div>
-    </IonModal>
+    </Modal>
   )
 }
 
-export default Modal
+export default WeatherModal

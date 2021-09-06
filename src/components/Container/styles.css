@@ -1,19 +1,69 @@
-.title{
-    display: flex;
-    justify-content: center;
-}
-
-.title > button {
-    margin: auto 20px;
-    height: 20px;
-}
-
 .stat{
     display: flex;    
     justify-content: center;
     margin: 5px auto;
 }
 
-.buttonDeleteAllChecked{
-    border: 1px;
+.stat > .button {
+    font-size: 20px;
+    background: #5bff82;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.title {
+    display: grid;
+    padding: 15px;
+    height: 100px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.title > .dates {
+    height: 100%;
+    display: inline-flex;
+    overflow-x: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid black;
+}
+
+.title > .dates > .date-button {
+    background: var(--base-color-dates);
+    box-shadow: 2px 3px 5px 2px #a3a3a3;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 10px 10px 0;
+    padding: 0 25px;
+    height: calc(100% - 20px);
+}
+
+.title > .dates > .date-button > p {
+    font-size: 18px;
+}
+
+.title > .info {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title > .info > .text {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.title > .info > .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background: #5bff82;
+    border-radius: 5px;
+    padding: 10px;
 }

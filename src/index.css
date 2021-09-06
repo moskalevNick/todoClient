@@ -1,32 +1,38 @@
 body[color-theme="dark"] {
+    --base-color-app: #313131;
     --base-color-header: #3a3535;
-    --base-color-list: #4d4d4d;
-    --base-color-text: #dddddd;
-    --base-color-modal: #2e203b;
-    --base-color-nav: #3a3535;
-    --base-color-active:  #ffffff;
-    --base-color-nonactive: #757575;
+    --base-color-navbar: #363636;
+    --base-color-dates: #363636;
+    --base-color-list: #ff4b4b;
+    --base-color-text: #727272;
+    --base-color-modal: #2b2b2b;
+    --base-color-active:  #ff4b4b;
+    --base-color-nonactive: #3d3d3d;
     --base-color-burger: #3d3d3d;
+    --base-color-trash-icon: #3d3d3d;
   }
   
   body[color-theme="light"] {
+    --base-color-app: #ffffff;
     --base-color-header: #ffffff;
-    --base-color-list: #8d8d8d;
+    --base-color-navbar: #ffffff;
+    --base-color-dates: #ffffff;
+    --base-color-list: #ff4b4b;
     --base-color-text: #000000;
-    --base-color-modal: #94a7db;
-    --base-color-nav:  #ffffff;
-    --base-color-active: #000000;
+    --base-color-modal: #ffffff;
+    --base-color-active: #ff4b4b;
     --base-color-nonactive: #5f5f5f;
     --base-color-burger: #adadad;
+    --base-color-trash-icon: #ffffff;
   }
 
 *{
     color: var(--base-color-text);
+    font-family: 'Roboto', sans-serif;
 }
 
 button{
     border: none;
-    background-color: var(--base-color-list);
 }
 
 .app {
@@ -34,26 +40,28 @@ button{
     grid-template-areas:"navbar header" 
                         "navbar todolist";
     grid-template-columns: 1fr 4fr;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 70px 1fr;
     grid-gap: 10px;
+    background-color: var(--base-color-app);
 }
 
-.navBar{
+.navBar-container{
     grid-area: navbar;
-    background-color: var(--base-color-list);
 }
 
 .header{
     grid-area: header;
-    background-color: var(--base-color-list);
 }
 
 .todoList{
     grid-area: todolist;
-    background-color: var(--base-color-list);
 }
 
-@media screen and (max-width: 600px) {
+.notActivate{
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {
 
     .navBar{
         display: none;

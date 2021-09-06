@@ -1,47 +1,11 @@
-
-.openedModal > .ion-color-danger{
-  --ion-color-contrast: var(--base-color-text) !important;
-}   
-
-.openedModal > .ion-color-success{
-  --ion-color-contrast: var(--base-color-text) !important;
-} 
-
-.item-has-focus{
-  --highlight-color-focused: #c93434 ;
-}
-
-.inputWindow {
-  color: var(--base-color-text);
-}
-
-.iconX {
-  color: var(--base-color-text);
-}
-
-.openedModal{
-  background-color: var(--base-color-list);
-  width: var(--width);
-  height: var(--height);
-  border-radius: 2px;
-}
-
-.modal-wrapper {
- margin-bottom: 260px;
-}
-
-.exampleLink {
-  text-align: right;
-  color: var(--base-color-text);
-}
-
-.containerLink{
-  text-align: right;
-}
-
-.invalidCity{
-  color: #e20000;
-  text-align: left;
-  width: 220px;
-  position: absolute;
+.weather-modal{
+  height: 400px;
+  width: 300px;
+  background: var(--base-color-modal);
+  box-shadow: 0 0 20px 10px #d7d7d7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
 }

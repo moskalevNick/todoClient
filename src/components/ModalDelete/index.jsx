@@ -1,29 +1,29 @@
 import React from "react"
 import "./styles.css"
-import {IonModal, IonButton} from "@ionic/react"
+import { Modal } from "../../ui/Modal"
 
 const ModalDelete = ({ isModalDeleteOpen, removeTodo, acceptTodo, setModalDeleteOpen, removeAllChecked }) => {
   return (
-    <IonModal isOpen={isModalDeleteOpen} >
-      <div className={"openedModal"}>
-        <div className={"titleModal"}>
+    <Modal isOpen={isModalDeleteOpen}>
+      <div className={"delete-modal"}>
+        <div className={"title-modal"}>
           Are you sure, you wanna delete {acceptTodo._id ? `"${acceptTodo.title}"` : "all checked todos"} ?
         </div>
-        <div className={"buttonsDelete"}>
-          <IonButton 
-            color="success" 
+        <div className={"buttons-delete"}>
+          <button 
+            className={"button-sure"}
             onClick={
             acceptTodo._id 
             ? removeTodo.bind(null, acceptTodo._id) 
             : removeAllChecked.bind(null, acceptTodo)}
-          >sure</IonButton>
-          <IonButton
-            color="danger" 
+          >sure</button>
+          <button
+            className={"button-cancel"}
             onClick={setModalDeleteOpen.bind(null, false)}
-          >cancel</IonButton>
+          >cancel</button>
         </div>
       </div>
-    </IonModal>
+    </Modal>
   )
 }
 

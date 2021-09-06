@@ -1,14 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
+import moment from 'moment'
 
+import { dateObjectFormatter, dateToStringFormatter } from '../../helpers/dateFormatter';
+import { deadLineDate } from '../../hooks/useDeadLineDate'
 import { addTodo, changeTodo, removeAllChecked, removeTodo, setTodos } from '../../redux/actions'
 import TodoList from "../TodoList"
 import Meter from "../Meter"
-import Modal from "../Modal"
+import NewTodoModal from "../NewTodoModal"
 import ModalDelete from "../ModalDelete"
 import "./styles.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 
 const Container = ({ type = "main" }) => {
   const d = new Date()
@@ -32,10 +33,20 @@ const Container = ({ type = "main" }) => {
   const [isModalDeleteOpen, setModalDeleteOpen] = useState(false)
   const [acceptTodo, setAcceptTodo] = useState({})
   const [inputValue, setInputValue] = useState("")
-  const [selectedDate, setSelectedDate] = useState(currentDate);
+  const [date, setDate] = useState(dateObjectFormatter(moment(Date.now()).format('YYYY-MM-DD')));
 
   const dispatch = useDispatch()
-  const { todos } = useSelector(state => state)
+  const todos = useSelector(state => state.todos)
+
+  const deadlines = []
+  if (todos.data) {
+    todos.data.forEach((el) => {
+      Object.assign(el, { deadline: deadLineDate(el.date) })
+      if(!deadlines.includes(el.deadline)){
+        deadlines.push(el.deadline)
+      }
+    })
+  }
 
   useEffect(() => {
     if (todos.data) {
@@ -76,7 +87,7 @@ const Container = ({ type = "main" }) => {
   }
 
   const addNewTodo = () => {
-    dispatch(addTodo(inputValue, selectedDate))
+    dispatch(addTodo(inputValue, dateToStringFormatter(date)))
     setModalOpen(false)
     setInputValue("")
   }
@@ -86,21 +97,31 @@ const Container = ({ type = "main" }) => {
     setModalDeleteOpen(false)
   }
 
-  const removeCheckedTodos = async () => {
+  const removeCheckedTodos = () => {
     dispatch(removeAllChecked())
     setModalDeleteOpen(false)
+  }
+  
+  const filterTodo = (deadline) => {
+    return currentTodos.filter((el) => el.deadline === deadline)
   }
 
   return (
     <div>
       <div className={"title"}>
-        <h1>you have {amount} goals</h1>
-        <button onClick={triggerModal}>
-          <FontAwesomeIcon
-            className={"icon"}
-            size="2x"
-            icon={faPlusCircle} />
-        </button>
+        <div className={'dates'}>
+          {deadlines.map((deadline) => ( 
+            <button className={'date-button'} onClick={filterTodo.bind(null, deadline)} key={deadline}>
+              <p>{deadline}</p>
+            </button>
+            ))}
+        </div>
+        <div className={'info'}>
+          <p className={'text'}>you have {amount} goals</p>
+          <button className={'button'} onClick={triggerModal}>
+            Add new todo
+          </button>
+        </div>
       </div>
       <TodoList
         todos={currentTodos}
@@ -116,19 +137,19 @@ const Container = ({ type = "main" }) => {
         removeTodo={removeTodoById}
         removeAllChecked={removeCheckedTodos}
       />
-      <Modal
+      <NewTodoModal
         setInputValue={setInputValue}
         setModalOpen={setModalOpen}
         isModalOpen={isModalOpen}
         inputValue={inputValue}
         addTodo={addNewTodo}
-        setSelectedDate={setSelectedDate}
+        date={date}
+        setDate={setDate}
         currentDate={currentDate}
-        selectedDate={selectedDate}
       />
       <div className={"stat"}>
         <button
-          className={"buttonDeleteAllChecked"}
+          className={"button"}
           onClick={triggerModalDelete}
           disabled={!checkedTodo}
         >Delete all checked</button>

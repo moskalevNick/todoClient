@@ -9,7 +9,7 @@ const Registration = () => {
 	const [inputPasswordValue, setInputPasswordValue] = useState("")
 	const [inputReplacePasswordValue, setInputReplacePasswordValue] = useState("")
 	const [inputNameValue, setInputNameValue] = useState("")
-    const [present, dismiss] = useIonToast();
+  const [present, dismiss] = useIonToast();
     
   const dispatch = useDispatch()
   
