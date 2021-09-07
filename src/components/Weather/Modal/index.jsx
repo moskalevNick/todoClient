@@ -8,11 +8,17 @@ const WeatherModal = ({ isModalChangeCityOpen, setModalChangeCityOpen, setInputV
   return (
     <Modal isOpen={isModalChangeCityOpen} onClose={setModalChangeCityOpen}>
       <div className={"weather-modal"}>
-        <IonButton color="danger" className={"close-button"} onClick={setModalChangeCityOpen.bind(null, false)}>X</IonButton>
+        <IonButton 
+          color="danger" 
+          className={"close-button"} 
+          onClick={setModalChangeCityOpen.bind(null, false)}
+        >X</IonButton>
         <div>
-          <IonItem className={'input-modal'}>
+          <IonItem>
             <IonLabel position="floating">Write your city here</IonLabel>
             <IonInput 
+              className={'input-modal'}
+              clear-input='true'
               value={inputValue} 
               onIonChange={(e) => {
                 setInputValue(e.target.value)

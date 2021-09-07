@@ -34,8 +34,6 @@ const Auth = () => {
                     value={password}/>
             </IonItem>
             <IonButton
-                className="ion-margin-top"
-                type="submit"
                 expand="block"
                 onClick={() => dispatch(login(name, password))}
                 disabled={!name || !password}

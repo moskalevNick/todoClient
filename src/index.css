@@ -4,12 +4,12 @@ body[color-theme="dark"] {
     --base-color-navbar: #363636;
     --base-color-dates: #363636;
     --base-color-list: #ff4b4b;
-    --base-color-text: #727272;
-    --base-color-modal: #2b2b2b;
+    --base-color-text: #777777;
+    --base-color-modal: #272727;
     --base-color-active:  #ff4b4b;
     --base-color-nonactive: #999999;
     --base-color-burger: #3d3d3d;
-    --base-color-trash-icon: #3d3d3d;
+    --base-color-trash-icon: #201f1f;
   }
   
   body[color-theme="light"] {
@@ -23,13 +23,12 @@ body[color-theme="dark"] {
     --base-color-active: #ff4b4b;
     --base-color-nonactive: #4e4e4e;
     --base-color-burger: #adadad;
-    --base-color-trash-icon: #ffffff;
+    --base-color-trash-icon: #e2e2e2;
   }
 
 *{
     color: var(--base-color-text);
     font-family: 'Roboto', sans-serif;
-    --background: var(--base-color-modal)
 }
 
 button{

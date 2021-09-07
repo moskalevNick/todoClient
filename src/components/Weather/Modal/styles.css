@@ -13,6 +13,9 @@
   align-self: flex-end;
 }
 
+.weather-modal{
+  --ion-background-color:var(--base-color-modal);
+}
 
 .container-link {
   display: flex;

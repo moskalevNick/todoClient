@@ -102,19 +102,19 @@ const Container = ({ type = "main" }) => {
     setModalDeleteOpen(false)
   }
 
-  /* let filteredTodos =[]
+  let filteredTodos =[]
 
   if (currentTodos){
     filteredTodos = currentTodos.slice()
-  } */
+  } 
 
   const filterTodo = (deadline) => {
-    //filteredTodos = currentTodos.filter((el) => el.deadline === deadline)
-    //return filteredTodos
+    filteredTodos = currentTodos.filter((el) => el.deadline === deadline)
+    return filteredTodos
   }
-  /* 
+
   console.log('currentTodos: ', currentTodos);
-  console.log('filteredTodos: ', filteredTodos); */
+  console.log('filteredTodos: ', filteredTodos);
 
   return (
     <div>
