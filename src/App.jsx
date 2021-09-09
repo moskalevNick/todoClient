@@ -15,6 +15,7 @@ const App = () => {
 	const dispatch = useDispatch()
 	const {isAuth, isLoading, user, showToast, messageException} = useSelector(state => state)
 	const [present] = useIonLoading();
+	
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
 			dispatch(checkAuth())

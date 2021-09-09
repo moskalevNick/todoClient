@@ -1,84 +1,61 @@
 .header {
-  display: grid;
-  grid-template-columns: 1fr 40px 40px;
-  box-shadow: 2px 3px 5px 2px #a3a3a3;
-  border-radius: 10px;
-  background: #ff4b4b;
-  padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 40px 40px;
+    box-shadow: 2px 3px 5px 2px #a3a3a3;
+    border-radius: 10px;
+    background: #ff4b4b;
+    padding: 0 20px;
 }
 
-.header > .burger-container {
-  display: none;
+.header>.hello-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 15px;
 }
 
-.header > .menu-container {
-  display: none;
+.header>.hello-container>.hello {
+    font-size: 18px;
+    color: var(--base-color-trash-icon);
 }
 
-.header > .hello-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 15px;
+.header>.hello-container>.hello>.name {
+    color: var(--base-color-trash-icon);
+    font-size: 22px;
+    text-transform: capitalize;
+    font-weight: bold;
 }
 
-.header > .hello-container > .hello {
-  font-size: 18px;
-  color: var(--base-color-trash-icon);
+.header>.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: auto;
 }
 
-.header > .hello-container > .hello > .name {
-  color: var(--base-color-trash-icon);
-  font-size: 22px;
-  text-transform: capitalize;
-  font-weight: bold;
+.header>.button-container>.button-nav {
+    background: transparent;
 }
 
-.header > .button-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin: auto;
+.header>.button-container>.button-nav>svg {
+    height: 22px;
+    width: 22px;
+    transition: 0.2s;
 }
 
-.header > .button-container > .button-nav {
-  background: transparent;
+.header>.button-container>.button-nav>svg>path {
+    fill: var(--base-color-trash-icon);
 }
 
-.header > .button-container > .button-nav > svg {
-  height: 22px;
-  width: 22px;
-  transition: 0.2s;
-}
-
-.header > .button-container > .button-nav > svg > path {
-  fill: var(--base-color-trash-icon);
-}
-
-.header > .button-container > .button-nav > svg:hover {
-  height: 26px;
-  width: 26px;
-  transition: 0.2s;
+.header>.button-container>.button-nav>svg:hover {
+    height: 26px;
+    width: 26px;
+    transition: 0.2s;
 }
 
 @media screen and (max-width: 700px) {
-
-  .header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 40px 40px;
-  }
-
-  .header > .burger-container {
-    display: flex;
-  }
-
-  .header > .burger-container > .burger {
-    display: block;
-    background-color: transparent;
-  }
-
-  .header > .menu-container {
-    display: flex;
-  }
-
+    .header {
+        display: grid;
+        grid-template-columns: 1fr 40px 20px;
+    }
 }

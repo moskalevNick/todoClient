@@ -1,14 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter, faPlusSquare, faTrashAlt, faCloudSunRain, faShareSquare } from "@fortawesome/free-solid-svg-icons"
 import moment from 'moment'
+import { NavLink } from "react-router-dom"
 
 import { dateObjectFormatter, dateToStringFormatter } from '../../helpers/dateFormatter';
-import { deadLineDate } from '../../hooks/useDeadLineDate'
 import { addTodo, changeTodo, removeAllChecked, removeTodo, setTodos } from '../../redux/actions'
 import TodoList from "../TodoList"
 import Meter from "../Meter"
 import NewTodoModal from "../NewTodoModal"
 import ModalDelete from "../ModalDelete"
+import BurgerMenu from '../BurgerMenu'
 import "./styles.css"
 
 const Container = ({ type = "main" }) => {
@@ -34,19 +37,24 @@ const Container = ({ type = "main" }) => {
   const [acceptTodo, setAcceptTodo] = useState({})
   const [inputValue, setInputValue] = useState("")
   const [date, setDate] = useState(dateObjectFormatter(moment(Date.now()).format('YYYY-MM-DD')));
+  const [disabledButton, setDisabledButton] = useState('all')
+  const [deadlines, setDeadlines] = useState([])
+  const [menuIsOpen, setMenuOpen] = useState(false)
 
   const dispatch = useDispatch()
   const todos = useSelector(state => state.todos)
 
-  const deadlines = []
-  if (todos.data) {
-    todos.data.forEach((el) => {
-      Object.assign(el, { deadline: deadLineDate(el.date) })
-      if(!deadlines.includes(el.deadline)){
-        deadlines.push(el.deadline)
-      }
-    })
-  }
+  useEffect(() => {
+    if (todos.data) {
+      const actualDeadlines = ['all']
+      todos.data.forEach((el) => {
+        if (!actualDeadlines.includes(el.deadline)) {
+          actualDeadlines.push(el.deadline)
+        }
+      })
+      setDeadlines(actualDeadlines)
+    }
+  }, [todos])
 
   useEffect(() => {
     if (todos.data) {
@@ -57,21 +65,13 @@ const Container = ({ type = "main" }) => {
   }, [todos])
 
   useEffect(() => {
-    dispatch(setTodos())
-  }, [dispatch])
+    dispatch(setTodos(type))
+  }, [dispatch, type])
 
-  const currentTodos = useMemo(() => {
-    if (!todos.data) {
-      return null
-    }
-    if (type === "important") {
-      return todos.data.filter((todo) => todo.important === true)
-    } else if (type === "checked") {
-      return todos.data.filter((todo) => todo.checked === true)
-    } else {
-      return todos.data
-    }
-  }, [todos, type])
+  const filterTodo = (type, deadline) => {
+    setDisabledButton(deadline)
+    dispatch(setTodos(type, deadline))
+  }
 
   const triggerModal = () => {
     setModalOpen((prev) => !prev)
@@ -82,8 +82,9 @@ const Container = ({ type = "main" }) => {
     setAcceptTodo(data)
   }
 
-  const changeCurrentTodo = (id, type) => {
-    dispatch(changeTodo(id, type))
+  const changeCurrentTodo = (id, typeTheme) => {
+    dispatch(changeTodo(id, typeTheme, type))
+    setDisabledButton('all')
   }
 
   const addNewTodo = () => {
@@ -102,29 +103,31 @@ const Container = ({ type = "main" }) => {
     setModalDeleteOpen(false)
   }
 
-  let filteredTodos =[]
-
-  if (currentTodos){
-    filteredTodos = currentTodos.slice()
-  } 
-
-  const filterTodo = (deadline) => {
-    filteredTodos = currentTodos.filter((el) => el.deadline === deadline)
-    return filteredTodos
+  const toggleMenu = () => {
+    setMenuOpen(!menuIsOpen)
   }
-
-  console.log('currentTodos: ', currentTodos);
-  console.log('filteredTodos: ', filteredTodos);
 
   return (
     <div>
+      <div className={'menu-container'}>
+        {
+          menuIsOpen && 
+          <BurgerMenu 
+            setMenuOpen={setMenuOpen} 
+            deadlines={deadlines} 
+            disabledButton={disabledButton}
+            filterTodo={filterTodo}
+            type={type}
+          />
+        }
+      </div>
       <div className={"title"}>
         <div className={'dates'}>
-          {deadlines.map((deadline) => ( 
-            <button className={'date-button'} onClick={filterTodo.bind(null, deadline)} key={deadline}>
+          {deadlines.map((deadline) => (
+            <button className={'date-button'} disabled={disabledButton === deadline ? true : false} onClick={filterTodo.bind(null, type, deadline)} key={deadline}>
               <p>{deadline}</p>
             </button>
-            ))}
+          ))}
         </div>
         <div className={'info'}>
           <p className={'text'}>you have {amount} goals</p>
@@ -134,7 +137,7 @@ const Container = ({ type = "main" }) => {
         </div>
       </div>
       <TodoList
-        todos={currentTodos}
+        todos={todos.data}
         changeTodo={changeCurrentTodo}
         triggerModalDelete={triggerModalDelete}
       />
@@ -164,6 +167,47 @@ const Container = ({ type = "main" }) => {
           disabled={!checkedTodo}
         >Delete all checked</button>
       </div>
+      <div className={'buttonsMobile-container'}>
+        <button className={"mobile-button"} onClick={toggleMenu}>
+          <FontAwesomeIcon
+            className={"icon"}
+            icon={faFilter}
+            size="3x"
+          />
+        </button>
+        <button className={"mobile-button"} onClick={triggerModal}>
+          <FontAwesomeIcon
+            className={"icon"}
+            icon={faPlusSquare}
+            size="3x"
+          />
+        </button>
+        <button className={"mobile-button"} onClick={triggerModalDelete}>
+          <FontAwesomeIcon
+            className={"icon"}
+            icon={faShareSquare}
+            size="2x"
+          />
+          <FontAwesomeIcon
+            className={"icon"}
+            icon={faTrashAlt}
+            size="2x"
+          />
+        </button>
+        <NavLink
+          className={"mobile-button"}
+          to="/weather"
+          onClick={setMenuOpen.bind(null, false)}
+        >
+          <FontAwesomeIcon
+            className={"icon"}
+            icon={faCloudSunRain}
+            size="3x"
+          />
+        </NavLink>
+
+      </div>
+      
     </div>
   )
 }

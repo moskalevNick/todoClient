@@ -1,9 +1,9 @@
-.weatherContainer{
+.weatherContainer {
     overflow-y: auto;
     width: auto;
 }
 
-.headerWeather{
+.headerWeather {
     margin: auto;
     display: flex;
     width: fit-content;
@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-.weatherContainer{
+.weatherContainer {
     text-align: center;
     color: var(--base-color-text);
 }
@@ -23,40 +23,45 @@
     margin: 30px auto;
 }
 
-.headerWeather > .ion-color-primary {
-   --ion-color-contrast: var(--base-color-text) !important;
-}
- 
-.weatherContainer >.ion-color-primary{
+.headerWeather>.ion-color-primary {
     --ion-color-contrast: var(--base-color-text) !important;
 }
 
-.buttonChange{
+.weatherContainer>.ion-color-primary {
+    --ion-color-contrast: var(--base-color-text) !important;
+}
+
+.buttonChange {
     margin: auto;
     margin-left: 15px;
 }
 
-.wrapper{
+.wrapper {
     height: calc(100vh - 130px)
 }
 
+.mobile-button-weather {
+    display: none;
+}
 
-@media screen and (max-width: 460px) {
-    
+@media screen and (max-width: 700px) {
     .card {
         grid-template-columns: 1fr;
     }
- 
-    .headerWeather{
+    .headerWeather {
         flex-direction: column;
     }
-
-    .buttonChange{   
+    .buttonChange {
         margin: 0 auto;
         margin-bottom: 20px;
     }
-
-    .wrapper{
+    .wrapper {
         height: auto;
+    }
+    .mobile-button-weather {
+        display: block;
+        position: absolute;
+        top: 0px;
+        color: #ff4b4b;
     }
 }

@@ -13,8 +13,8 @@ export default class AuthService {
         return $api.post('/api/logout')
     }
 
-    static async getTodos() { 
-        return $api.get('/api/todos')
+    static async getTodos(type, deadline) { 
+        return $api.get(`/api/todos?type=${type}&deadline=${deadline}`)
     }
 
     static async setCity(city, name) { 

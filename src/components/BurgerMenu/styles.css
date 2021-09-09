@@ -1,13 +1,16 @@
-.burgerMenu{
-    position:absolute;
+.burgerMenu {
+    position: absolute;
     z-index: 300;
     display: grid;
     background: var(--base-color-burger);
     font-size: 1.15em;
+    margin-top: 0px;
     width: 30%;
+    top: 0px;
+    height: 100vh;
 }
 
-.burgerItem{
+.burgerItem {
     display: inline-block;
     text-decoration: none;
     margin-bottom: 10px;
@@ -15,13 +18,21 @@
     transition: color 0.2s;
 }
 
-.underline{
+.underline {
     color: var(--base-color-active);
     text-decoration: underline;
-  }
+}
 
-.buttonCloseMenu{
-    right:0%;
+.buttonCloseMenu {
+    right: 0%;
     position: absolute;
     z-index: 300;
+}
+
+.burgerMenu>.dates {
+    display: grid;
+}
+
+.burgerMenu>.header-sort {
+    align-self: end;
 }

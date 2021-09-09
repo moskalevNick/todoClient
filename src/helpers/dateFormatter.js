@@ -8,10 +8,6 @@ export const dateToStringFormatter = ( date ) => {
   return `${ date.day }-${ date.month.id }-${ date.year }`
 };
 
-export const dateToDeadline = ( date ) => {
-  return `${ date.slice(6, 10) }-${ date.slice(3, 5) }-${ date.slice(0, 2) }`
-};
-
 export const dateObjectFormatter = ( date ) => {
   return {
     year: dateFormatter( date, 'YYYY' ),

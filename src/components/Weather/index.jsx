@@ -1,15 +1,19 @@
-import React, {useEffect, useState} from "react"
-import {useDispatch, useSelector} from 'react-redux'
-import {IonButton} from "@ionic/react"
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from 'react-redux'
+import { IonButton } from "@ionic/react"
+import { NavLink } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons"
+
 
 import Card from "./Card/index"
 import "./styles.css"
 import WeatherModal from "./Modal/index"
-import {setCity} from '../../redux/actions'
+import { setCity } from '../../redux/actions'
 
 const Weather = () => {
     const dispatch = useDispatch()
-    const {weather, user} = useSelector(state => state)
+    const { weather, user } = useSelector(state => state)
 
     const [isModalChangeCityOpen, setModalChangeCityOpen] = useState(false)
     const [isCityValid, setCityValid] = useState(true)
@@ -51,132 +55,90 @@ const Weather = () => {
     function setDates(data) {
         const nowDate = new Date();
 
-        const todayDate = `${
-            nowDate.getFullYear()
-        }-${
-            ((nowDate.getMonth() + 1) < 10) ? `0${nowDate.getMonth() + 1}` : nowDate.getMonth() + 1
-        }-${
-            (nowDate.getDate() < 10) ? `0${nowDate.getDate()}` : nowDate.getDate()
-        }`
+        const todayDate = `${nowDate.getFullYear()
+            }-${((nowDate.getMonth() + 1) < 10) ? `0${nowDate.getMonth() + 1}` : nowDate.getMonth() + 1
+            }-${(nowDate.getDate() < 10) ? `0${nowDate.getDate()}` : nowDate.getDate()
+            }`
 
-        let tomorrowDate = `${
-            nowDate.getFullYear()
-        }-${
-            ((nowDate.getMonth() + 1) < 10) ? `0${nowDate.getMonth() + 1}` : nowDate.getMonth() + 1
-        }-${
-            ((nowDate.getDate() + 1) < 10) ? `0${nowDate.getDate() + 1}` : nowDate.getDate() + 1
-        }`
+        let tomorrowDate = `${nowDate.getFullYear()
+            }-${((nowDate.getMonth() + 1) < 10) ? `0${nowDate.getMonth() + 1}` : nowDate.getMonth() + 1
+            }-${((nowDate.getDate() + 1) < 10) ? `0${nowDate.getDate() + 1}` : nowDate.getDate() + 1
+            }`
 
-        let afterTomorrowDate = `${
-            nowDate.getFullYear()
-        }-${
-            ((nowDate.getMonth() + 1) < 10) ? `0${nowDate.getMonth() + 1}` : nowDate.getMonth() + 1
-        }-${
-            ((nowDate.getDate() + 2) < 10) ? `0${nowDate.getDate() + 2}` : nowDate.getDate() + 2
-        }`
+        let afterTomorrowDate = `${nowDate.getFullYear()
+            }-${((nowDate.getMonth() + 1) < 10) ? `0${nowDate.getMonth() + 1}` : nowDate.getMonth() + 1
+            }-${((nowDate.getDate() + 2) < 10) ? `0${nowDate.getDate() + 2}` : nowDate.getDate() + 2
+            }`
 
         if (new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0).getDate() === afterTomorrowDate.slice(-2) - 1) {
-            afterTomorrowDate = `${
-                nowDate.getFullYear()
-            }-${
-                ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-            }-01`
+            afterTomorrowDate = `${nowDate.getFullYear()
+                }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                }-01`
         }
 
         if (new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0).getDate() === afterTomorrowDate.slice(-2) - 2) {
-            afterTomorrowDate = `${
-                nowDate.getFullYear()
-            }-${
-                ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-            }-02`
+            afterTomorrowDate = `${nowDate.getFullYear()
+                }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                }-02`
         }
 
         if (new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0).getDate() === tomorrowDate.slice(-2) - 1) {
-            afterTomorrowDate = `${
-                nowDate.getFullYear()
-            }-${
-                ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-            }-01`
+            afterTomorrowDate = `${nowDate.getFullYear()
+                }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                }-01`
         }
 
         if (new Date(2021, nowDate.getMonth() + 1, 0).getDate() === 30) { // month 30days
             if (nowDate.getDate() === 29) {
-                afterTomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `01`
-                }`
+                afterTomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`01`
+                    }`
             } else if (nowDate.getDate() === 30) {
-                tomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `01`
-                }`
-                afterTomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `02`
-                }`
+                tomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`01`
+                    }`
+                afterTomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`02`
+                    }`
             }
         }
 
         if (new Date(2021, nowDate.getMonth() + 1, 0).getDate() === 29) { //february 29days
             if (nowDate.getDate() === 28) {
-                afterTomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `01`
-                }`
+                afterTomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`01`
+                    }`
             } else if (nowDate.getDate() === 29) {
-                tomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `01`
-                }`
-                afterTomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `02`
-                }`
+                tomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`01`
+                    }`
+                afterTomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`02`
+                    }`
             }
         }
 
         if (new Date(2021, nowDate.getMonth() + 1, 0).getDate() === 28) {  //february 28days
             if (nowDate.getDate() === 27) {
-                afterTomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `01`
-                }`
+                afterTomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`01`
+                    }`
             } else if (nowDate.getDate() === 28) {
-                tomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `01`
-                }`
-                afterTomorrowDate = `${
-                    nowDate.getFullYear()
-                }-${
-                    ((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
-                }-${
-                    `02`
-                }`
+                tomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`01`
+                    }`
+                afterTomorrowDate = `${nowDate.getFullYear()
+                    }-${((nowDate.getMonth() + 2) < 10) ? `0${nowDate.getMonth() + 2}` : nowDate.getMonth() + 2
+                    }-${`02`
+                    }`
             }
         }
 
@@ -217,7 +179,7 @@ const Weather = () => {
             today.unshift(null)
         }
 
-        setWeatherByDays({today, tomorrow, afterTomorrow})
+        setWeatherByDays({ today, tomorrow, afterTomorrow })
     }
 
     const trigerModalChangeCity = () => {
@@ -254,6 +216,16 @@ const Weather = () => {
 
     return (
         <div className={'wrapper'}>
+            <NavLink
+                className={"mobile-button-weather"}
+                to="/"
+            >
+                <FontAwesomeIcon
+                    className={"icon"}
+                    icon={faArrowCircleLeft}
+                    size="3x"
+                />
+            </NavLink>
             <div className={"headerWeather"}>
                 <h1>weather in {user.city} city</h1>
                 <IonButton
@@ -266,38 +238,38 @@ const Weather = () => {
             </div>
             <div className={"weatherContainer"}>
                 <div>{weatherDay}, {
-                    new Date(currentWeather[2].dt_txt).toLocaleString("en", {month: 'long', day: 'numeric'})
+                    new Date(currentWeather[2].dt_txt).toLocaleString("en", { month: 'long', day: 'numeric' })
                 }, {
-                    new Date(currentWeather[2].dt_txt).toLocaleString('en', {weekday: 'long'})
-                }</div>
+                        new Date(currentWeather[2].dt_txt).toLocaleString('en', { weekday: 'long' })
+                    }</div>
                 <div className={"card"}>{
                     currentWeather.map((el, index) => (
-                        <Card card={el} key={index}/>
+                        <Card card={el} key={index} />
                     ))
                 }</div>
                 <IonButton onClick={() => {
                     setWeatherDay('today')
                     hiddenButtons('today')
                 }}
-                           color="primary"
-                           className={"buttonChangeWeatherToday"}
-                           disabled={buttonChangeWeatherTodayHidden}
+                    color="primary"
+                    className={"buttonChangeWeatherToday"}
+                    disabled={buttonChangeWeatherTodayHidden}
                 >today</IonButton>
                 <IonButton onClick={() => {
                     setWeatherDay('tomorrow')
                     hiddenButtons('tomorrow')
                 }}
-                           color="primary"
-                           className={"buttonChangeWeatherTomorrow"}
-                           disabled={buttonChangeWeatherTomorrowHidden}
+                    color="primary"
+                    className={"buttonChangeWeatherTomorrow"}
+                    disabled={buttonChangeWeatherTomorrowHidden}
                 >tomorrow</IonButton>
                 <IonButton onClick={() => {
                     setWeatherDay('afterTomorrow')
                     hiddenButtons('afterTomorrow')
                 }}
-                           color="primary"
-                           className={"buttonChangeWeatherAftertomorrow"}
-                           disabled={buttonChangeWeatherAftertomorrowHidden}
+                    color="primary"
+                    className={"buttonChangeWeatherAftertomorrow"}
+                    disabled={buttonChangeWeatherAftertomorrowHidden}
                 >aftertomorrow</IonButton>
             </div>
             <WeatherModal

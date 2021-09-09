@@ -1,16 +1,16 @@
-.list{
+.list {
     padding: 25px;
     height: calc(100vh - 340px);
     overflow-y: auto;
 }
 
-.no-todos{
+.no-todos {
     text-align: center;
 }
 
-
-@media screen and (max-width: 600px) {
-    .list{
-        height: calc(100vh - 330px);
+@media screen and (max-width: 700px) {
+    .list {
+        height: calc(100vh - 192px);
+        padding: 5px;
     }
 }

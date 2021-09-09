@@ -59,9 +59,9 @@ export const setCity = (city, name) => {
   }
 }
 
-export const setTodos = () => {
+export const setTodos = ( type = 'main', deadline = 'all') => {
   return async dispatch => {
-    const data = await AuthService.getTodos();
+    const data = await AuthService.getTodos(type, deadline);
     dispatch({
       type: SET_TODOS,
       payload: data
@@ -81,16 +81,16 @@ export const removeTodo = (id) => async dispatch => {
 export const addTodo = (title, date) => async dispatch => {
   try {
     await TodoService.addTodo(title, date);
-    dispatch(setTodos())
+    dispatch(setTodos( 'main', 'all' ))
   } catch (e) {
     console.log(e.response?.data?.message);
   }
 };
 
-export const changeTodo = (id, type) => async dispatch => {
+export const changeTodo = (id, typeTheme, type) => async dispatch => {
   try {
-    await TodoService.changeTodo(id, type);
-    dispatch(setTodos())
+    await TodoService.changeTodo(id, typeTheme);
+    dispatch(setTodos( type, 'all' ))
   } catch (e) {
     console.log(e.response?.data?.message);
   }
