@@ -106,10 +106,9 @@ const Container = ({ type = "main" }) => {
   const toggleMenu = () => {
     setMenuOpen(!menuIsOpen)
   }
-
+  
   return (
     <div>
-      <div className={'menu-container'}>
         {
           menuIsOpen && 
           <BurgerMenu 
@@ -118,9 +117,10 @@ const Container = ({ type = "main" }) => {
             disabledButton={disabledButton}
             filterTodo={filterTodo}
             type={type}
+            onClose={() => console.log('on container')}
+            isOpen={menuIsOpen}
           />
         }
-      </div>
       <div className={"title"}>
         <div className={'dates'}>
           {deadlines.map((deadline) => (

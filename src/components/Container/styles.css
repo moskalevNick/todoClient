@@ -96,7 +96,9 @@
             justify-content: space-between;
         }
         .buttonsMobile-container>.mobile-button {
-            background-color: #ff4b4b;
-            color: var(--base-color-trash-icon) !important
+            background-color: var(--base-color-app);
+        }
+        .buttonsMobile-container>.mobile-button>.icon {
+            color: black;
         }
     }

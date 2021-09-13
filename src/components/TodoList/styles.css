@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 700px) {
     .list {
-        height: calc(100vh - 192px);
+        height: calc(100vh - 195px);
         padding: 5px;
     }
 }

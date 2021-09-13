@@ -61,7 +61,10 @@
     .mobile-button-weather {
         display: block;
         position: absolute;
-        top: 0px;
-        color: #ff4b4b;
+        top: 7px;
+        left: 7px;
+    }
+    .icon {
+        color: var(--base-color-trash-icon);
     }
 }

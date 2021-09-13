@@ -4,7 +4,7 @@ import './styles.css';
 
 export const Modal = ({ children, isOpen, onClose, closeOnOverlayClick = true }) => {
   const [isOverlay, setIsOverlay] = useState(false);
-
+  
   const handleClose = () => {
     if (isOverlay) {
       onClose();

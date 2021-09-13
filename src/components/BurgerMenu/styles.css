@@ -8,6 +8,7 @@
     width: 30%;
     top: 0px;
     height: 100vh;
+    left: 0px;
 }
 
 .burgerItem {
@@ -35,4 +36,19 @@
 
 .burgerMenu>.header-sort {
     align-self: end;
+}
+
+.burger-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: default;
+    background: rgba(0, 0, 0, 0.3);
+    margin-top: 0 !important;
+    z-index: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

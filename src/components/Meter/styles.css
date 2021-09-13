@@ -1,19 +1,20 @@
-.meter{
+.meter {
     height: 10px;
     border-radius: 10px;
+    margin: 2px;
 }
 
-.red-meter{
+.red-meter {
     --progress-background: red !important;
     --background: salmon;
 }
 
-.yellow-meter{
+.yellow-meter {
     --progress-background: rgb(245 245 93) !important;
     --background: rgb(177 176 51);
 }
 
-.green-meter{
+.green-meter {
     --progress-background: rgb(19, 219, 19) !important;
     --background: rgb(4, 114, 4);
 }

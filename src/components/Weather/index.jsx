@@ -215,72 +215,76 @@ const Weather = () => {
     }
 
     return (
-        <div className={'wrapper'}>
-            <NavLink
-                className={"mobile-button-weather"}
-                to="/"
-            >
-                <FontAwesomeIcon
-                    className={"icon"}
-                    icon={faArrowCircleLeft}
-                    size="3x"
-                />
-            </NavLink>
-            <div className={"headerWeather"}>
-                <h1>weather in {user.city} city</h1>
-                <IonButton
-                    onClick={trigerModalChangeCity}
-                    color="primary"
-                    className={"buttonChange"}
+        <>
+            <div className={"mobile-button-weather"}>
+                <NavLink
+                    to="/"
                 >
-                    change city
-                </IonButton>
+                    <FontAwesomeIcon
+                        className={"icon"}
+                        icon={faArrowCircleLeft}
+                        size="3x"
+                    />
+                </NavLink>
             </div>
-            <div className={"weatherContainer"}>
-                <div>{weatherDay}, {
-                    new Date(currentWeather[2].dt_txt).toLocaleString("en", { month: 'long', day: 'numeric' })
-                }, {
-                        new Date(currentWeather[2].dt_txt).toLocaleString('en', { weekday: 'long' })
+            <div className={'wrapper'}>
+
+                <div className={"headerWeather"}>
+                    <h1>weather in {user.city} city</h1>
+                    <IonButton
+                        onClick={trigerModalChangeCity}
+                        color="primary"
+                        className={"buttonChange"}
+                    >
+                        change city
+                    </IonButton>
+                </div>
+                <div className={"weatherContainer"}>
+                    <div>{weatherDay}, {
+                        new Date(currentWeather[2].dt_txt).toLocaleString("en", { month: 'long', day: 'numeric' })
+                    }, {
+                            new Date(currentWeather[2].dt_txt).toLocaleString('en', { weekday: 'long' })
+                        }</div>
+                    <div className={"card"}>{
+                        currentWeather.map((el, index) => (
+                            <Card card={el} key={index} />
+                        ))
                     }</div>
-                <div className={"card"}>{
-                    currentWeather.map((el, index) => (
-                        <Card card={el} key={index} />
-                    ))
-                }</div>
-                <IonButton onClick={() => {
-                    setWeatherDay('today')
-                    hiddenButtons('today')
-                }}
-                    color="primary"
-                    className={"buttonChangeWeatherToday"}
-                    disabled={buttonChangeWeatherTodayHidden}
-                >today</IonButton>
-                <IonButton onClick={() => {
-                    setWeatherDay('tomorrow')
-                    hiddenButtons('tomorrow')
-                }}
-                    color="primary"
-                    className={"buttonChangeWeatherTomorrow"}
-                    disabled={buttonChangeWeatherTomorrowHidden}
-                >tomorrow</IonButton>
-                <IonButton onClick={() => {
-                    setWeatherDay('afterTomorrow')
-                    hiddenButtons('afterTomorrow')
-                }}
-                    color="primary"
-                    className={"buttonChangeWeatherAftertomorrow"}
-                    disabled={buttonChangeWeatherAftertomorrowHidden}
-                >aftertomorrow</IonButton>
+                    <IonButton onClick={() => {
+                        setWeatherDay('today')
+                        hiddenButtons('today')
+                    }}
+                        color="primary"
+                        className={"buttonChangeWeatherToday"}
+                        disabled={buttonChangeWeatherTodayHidden}
+                    >today</IonButton>
+                    <IonButton onClick={() => {
+                        setWeatherDay('tomorrow')
+                        hiddenButtons('tomorrow')
+                    }}
+                        color="primary"
+                        className={"buttonChangeWeatherTomorrow"}
+                        disabled={buttonChangeWeatherTomorrowHidden}
+                    >tomorrow</IonButton>
+                    <IonButton onClick={() => {
+                        setWeatherDay('afterTomorrow')
+                        hiddenButtons('afterTomorrow')
+                    }}
+                        color="primary"
+                        className={"buttonChangeWeatherAftertomorrow"}
+                        disabled={buttonChangeWeatherAftertomorrowHidden}
+                    >aftertomorrow</IonButton>
+                </div>
+                <WeatherModal
+                    setModalChangeCityOpen={setModalChangeCityOpen}
+                    isModalChangeCityOpen={isModalChangeCityOpen}
+                    setInputValue={setInputValue}
+                    inputValue={inputValue}
+                    changeCity={changeCity}
+                    isCityValid={isCityValid}
+                />
             </div>
-            <WeatherModal
-                setModalChangeCityOpen={setModalChangeCityOpen}
-                isModalChangeCityOpen={isModalChangeCityOpen}
-                setInputValue={setInputValue}
-                inputValue={inputValue}
-                changeCity={changeCity}
-                isCityValid={isCityValid}
-            />
-        </div>
+        </>
     )
 }
 
